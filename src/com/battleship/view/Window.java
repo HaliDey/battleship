@@ -1,6 +1,7 @@
 package com.battleship.view;
 
 import java.awt.CardLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -90,7 +91,9 @@ public class Window extends JFrame implements Observer{
 		typePanel.add(redAlertType);
 
 		shipsPanel = new JPanel();
-		shipsPanel.setLayout(new BoxLayout(shipsPanel, BoxLayout.LINE_AXIS));
+		//shipsPanel.setLayout(new BoxLayout(shipsPanel, BoxLayout.LINE_AXIS));
+		shipsPanel.setLayout( new GridLayout(1, 5) );
+		
 		shipsLabel = new JLabel("Navires");
 		aircraftCarrierChk = new JCheckBox("porte-avions");
 		nuclearSubmarineChk = new JCheckBox("sous-marin nucléaire");
