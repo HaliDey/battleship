@@ -1,9 +1,10 @@
 package com.battleship.view;
+import com.battleship.model.ButtonsActionListener;
 
 import java.awt.CardLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -37,13 +38,15 @@ public class Window extends JFrame implements Observer{
 	private JCheckBox aircraftCarrierChk, nuclearSubmarineChk, stealthBattleship1Chk, stealthBattleship2Chk, zodiacChk;
 	
 	private JButton startBtn, playBtn;	
-	
+	private ButtonsActionListener listener;
 
 	public Window(){
 		this.setTitle("Bataille navale");
 	    this.setSize(700, 600);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
+	    
+	    listener = new ButtonsActionListener(this);
 	    
 	    this.initChoicesElements();
 	    this.initGameElements();
@@ -109,14 +112,9 @@ public class Window extends JFrame implements Observer{
 
 		startBtn = new JButton("Commencer");
 		startBtn.setActionCommand("Switch Card");
-		startBtn.addActionListener(new ActionListener()
-		{
-		    @Override
-		    public void actionPerformed(ActionEvent event)
-		    {
-		        cards.next(cardsPanel);
-		    }
-		});
+		
+		
+		startBtn.addActionListener(listener);
 		
 		choicesContainer = new JPanel();
 		choicesContainer.setLayout(new BoxLayout(choicesContainer, BoxLayout.LINE_AXIS));
@@ -144,12 +142,30 @@ public class Window extends JFrame implements Observer{
 	
 	private void initGameElements(){		
 		secondCardPanel.add(new JLabel("Second screen"));
+		
+		secondCardPanel.add(new Grid() );
 				
 	}
 	
 	
 	@Override
 	public void update(Observable arg0, Object arg1) {}
+	
+	public CardLayout getCards() {
+		return cards;
+	}
+
+	public void setCards(CardLayout cards) {
+		this.cards = cards;
+	}
+
+	public JPanel getCardsPanel() {
+		return cardsPanel;
+	}
+
+	public void setCardsPanel(JPanel cardsPanel) {
+		this.cardsPanel = cardsPanel;
+	}
 	
 	
 }
