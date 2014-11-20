@@ -42,7 +42,7 @@ public class Window extends JFrame implements Observer{
 
 	public Window(){
 		this.setTitle("Bataille navale");
-	    this.setSize(700, 600);
+	    this.setSize(900, 800);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
 	    
@@ -141,9 +141,13 @@ public class Window extends JFrame implements Observer{
 	}
 	
 	private void initGameElements(){		
-		secondCardPanel.add(new JLabel("Second screen"));
-		
+		secondCardPanel.add(new JLabel("Joueur 1"));
 		secondCardPanel.add(new Grid() );
+		
+		secondCardPanel.add(new JLabel("Joueur 2"));
+		secondCardPanel.add(new Grid() );
+		
+		
 				
 	}
 	
