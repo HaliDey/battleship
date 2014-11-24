@@ -38,5 +38,15 @@ public class Coordinates {
 	public void setY(int y) {
 		this.y = y;
 	}
+
+	public boolean getPosition_coordinates() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Object getShip() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

@@ -19,4 +19,9 @@ public abstract class AbstractModel implements Observable{
 		
 	}
 
+	public void reset() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -1,5 +1,7 @@
 package com.battleship.core;
 
+import javax.swing.SwingUtilities;
+
 import com.battleship.controller.*;
 import com.battleship.model.*;
 import com.battleship.view.*;

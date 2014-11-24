@@ -1,6 +1,6 @@
 package com.battleship.controller;
 
-import com.battle.ship.Coordinates;
+import com.battleship.model.Coordinates;
 import com.battleship.model.AbstractModel;
 
 public abstract class AbstractController {
@@ -20,7 +20,7 @@ public abstract class AbstractController {
 	     this.ship.reset();
 	  }
 	  
-	//MÃ©thode de contrÃ´le
+	//Méthode de contrôle
 	  abstract void control();
 	}
 
