@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
@@ -12,158 +13,197 @@ import java.util.Observer;
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
 
 
-@SuppressWarnings("serial")
 public class Window extends JFrame implements Observer{
 
 	private static final Component Ship = null;
-
 	private static final AbstractButton TypePanel = null;
 
 	private CardLayout cards = new CardLayout();
-	  
-	private JPanel choicesContainer, cardsPanel, firstCardPanel, secondCardPanel;
+	private JPanel cardsPanel, secondCardPanel;
 	
-	private JPanel modePanel;
-	private JLabel gameModeLabel;
-	private ButtonGroup gameModeGroup;
+	JPanel gameElementsPanel;
 	private JRadioButton demoMode, onePlayerMode, twoPlayersMode;
-
-	private JPanel typePanel;
-	private JLabel battleTypeLabel;
-	private ButtonGroup battleTypeGroup;
 	private JRadioButton battleshipType, radarType, artilleryOperationType, redAlertType;
-	
-	private JPanel shipsPanel;
-	private JLabel shipsLabel;	
 	private JCheckBox aircraftCarrierChk, nuclearSubmarineChk, stealthBattleship1Chk, stealthBattleship2Chk, zodiacChk;
-	
 	private JButton startBtn, playBtn;
+	private GroupLayout layout;
+	
 	private ButtonsActionListener listener;
 	private JLabel gameModeTextView;
 
 	public Window(){
-		this.setTitle("THE BATTLE SHIP");//On donne un titre à l'application
-	    this.setSize(900,800);//pour redimentionner la taille de la fenetre du menu
+		this.setTitle("Bataille Navale");  //On donne un titre à l'application
+	    this.setSize(750,550);  //Pour redimentionner la taille de la fenetre du menu
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //On dit à l'application de se fermer lors du clic sur la croix
-	    this.setLocationRelativeTo(null);//On centre la fenêtre sur l'écran
+	    this.setLocationRelativeTo(null);  //On centre la fenêtre sur l'écran
+	    this.setResizable(false);
 	    
 	    listener = new ButtonsActionListener(this);
-	    
-	    this.initChoicesElements();
+	    gameElementsPanel = new JPanel();
+	    this.initElements();
 	    this.initGameElements();
 	                   
-	    this.setContentPane(cardsPanel);
+	    this.setContentPane(gameElementsPanel);
 	    this.setVisible(true);//visibilité de la fenetre
 	}
-	private void initChoicesElements(){
-		//choix des éléments
-		modePanel = new JPanel();
-		modePanel.setLayout(new BoxLayout(modePanel, BoxLayout.PAGE_AXIS));
-		gameModeTextView=(new JLabel("Choose the play Mode"));
-		gameModeGroup = new ButtonGroup();
+	
+	public void initElements()
+	{
+		/*
+		 * Mode de jeu
+		 */
+		JLabel gameModeLabel = new JLabel("Mode de jeu");
+		gameModeLabel.setFont(new Font("Segoe UI",Font.PLAIN,18));
+		ButtonGroup gameModeGroup = new ButtonGroup();
 		demoMode = new JRadioButton("Demo mode");
 		onePlayerMode = new JRadioButton("1 player Mode");
 		twoPlayersMode = new JRadioButton("2 players Mode");
-		
-		// ajout radio buttons au groupe en selectioner seulement 1
+		//Grouper les Radio btns pour limiter la selection
 		gameModeGroup.add(demoMode);
 		gameModeGroup.add(onePlayerMode);
 		gameModeGroup.add(twoPlayersMode);	
 		
-		// Ajout de l'élément au panel
-
-		modePanel.add(demoMode);
-		modePanel.add(onePlayerMode);
-		modePanel.add(twoPlayersMode);
-		
-		typePanel = new JPanel();
-		typePanel.setLayout(new BoxLayout(typePanel, BoxLayout.PAGE_AXIS));
-		battleTypeLabel = new JLabel("Choose the battle type");
-		battleTypeGroup = new ButtonGroup();
+		/*
+		 * Type de combat 
+		 */
+		JLabel battleTypeLabel = new JLabel("Type de bataille");
+		battleTypeLabel.setFont(new Font("Segoe UI",Font.PLAIN,18));
+		ButtonGroup battleTypeGroup = new ButtonGroup();
 		battleshipType = new JRadioButton("Battle Ship");
 		radarType = new JRadioButton("Mission radar player");
 		artilleryOperationType = new JRadioButton("Artillery operation player");
 		redAlertType = new JRadioButton("Red Alert");
-	
-		
-		// ajout radio buttons au groupe en selectioner seulement 1
+		//Grouper les Radio btns pour limiter la selection
 		battleTypeGroup.add(battleshipType);
 		battleTypeGroup.add(radarType);
 		battleTypeGroup.add(artilleryOperationType);
 		battleTypeGroup.add(redAlertType);
-		
-		// ajout des elements au panel
-		typePanel.add(battleTypeLabel);
-		typePanel.add(battleshipType);
-		typePanel.add(radarType);
-		typePanel.add(artilleryOperationType);
-		typePanel.add(redAlertType);
 
-		shipsPanel = new JPanel();
-		
-		shipsPanel.setLayout(new BoxLayout(shipsPanel, BoxLayout.LINE_AXIS));
-		
-		shipsPanel.setLayout( new GridLayout(5, 5) );
-		
-		//Pour nommer les differents navires par les boutons de type chekbox
-		shipsLabel = new JLabel("Ship");
+		/*
+		 * Navires
+		 */
+		JLabel shipsLabel = new JLabel("Navires");
+		shipsLabel.setFont(new java.awt.Font("Segoe UI", 0, 18));
 		battleTypeGroup = new ButtonGroup();
-		aircraftCarrierChk = new JCheckBox("AirecraftCarrier");//porte_avions
+		aircraftCarrierChk = new JCheckBox("AirecraftCarrier");//porte avions
 		nuclearSubmarineChk = new JCheckBox("Nuclear SubMarine");//sous marin nucleaire
 		stealthBattleship1Chk = new JCheckBox("Stealth armor first");//cuirasses furtifs
 		stealthBattleship2Chk = new JCheckBox("Stealth armor second");//cuirasses furtifs
 		zodiacChk = new JCheckBox("Zodiac");
 		
-		// Ajouter les elements au panel
-		shipsPanel.add(aircraftCarrierChk);
-		shipsPanel.add(nuclearSubmarineChk);
-		shipsPanel.add(stealthBattleship1Chk);
-		shipsPanel.add(stealthBattleship2Chk);
-		shipsPanel.add(zodiacChk);						
-
-		startBtn = new JButton("Start");
 		
+		/*
+		 * Placer les elements 
+		 */
+		startBtn = new JButton("Commencer");
 		startBtn.setActionCommand("Switch Card");
-		startBtn.addActionListener(listener);//ajout d'un ecouteur sur le bouton start
+        startBtn.addActionListener(listener);//ajout d'un ecouteur sur le bouton start
+        
+        
+		layout = new GroupLayout(gameElementsPanel);
+		gameElementsPanel.setLayout( layout );
 		
-		choicesContainer = new JPanel();
-		choicesContainer.setLayout(new BoxLayout(choicesContainer, BoxLayout.LINE_AXIS));
-		choicesContainer.add(modePanel);
-		choicesContainer.add(typePanel);						
+		JSeparator separateur = new JSeparator();
 		
-		firstCardPanel = new JPanel();
-		firstCardPanel.setLayout(new BoxLayout(firstCardPanel, BoxLayout.PAGE_AXIS));
-		firstCardPanel.add(choicesContainer);
-		firstCardPanel.add(shipsLabel);
-		firstCardPanel.add(shipsPanel);
-		firstCardPanel.add(startBtn);
+		layout.setHorizontalGroup(
+	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+	                .addGap(0, 0, Short.MAX_VALUE)
+	                .addComponent(startBtn)
+	                .addGap(49, 49, 49))
+	            .addGroup(layout.createSequentialGroup()
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addGroup(layout.createSequentialGroup()
+	                        .addGap(48, 48, 48)
+	                        .addComponent(separateur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(118, 118, 118)
+	                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+	                            .addComponent(gameModeLabel)
+	                            .addComponent(demoMode)
+	                            .addComponent(onePlayerMode)
+	                            .addComponent(twoPlayersMode))
+	                        .addGap(130, 130, 130)
+	                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+	                            .addComponent(artilleryOperationType)
+	                            .addComponent(redAlertType)
+	                            .addComponent(battleTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(battleshipType)
+	                            .addComponent(radarType)))
+	                    .addGroup(layout.createSequentialGroup()
+	                        .addGap(76, 76, 76)
+	                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addGroup(layout.createSequentialGroup()
+	                                .addComponent(aircraftCarrierChk)
+	                                .addGap(125, 125, 125)
+	                                .addComponent(nuclearSubmarineChk)
+	                                .addGap(114, 114, 114)
+	                                .addComponent(stealthBattleship1Chk))
+	                            .addGroup(layout.createSequentialGroup()
+	                                .addGap(111, 111, 111)
+	                                .addComponent(stealthBattleship2Chk)
+	                                .addGap(120, 120, 120)
+	                                .addComponent(zodiacChk))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(322, 322, 322)
+                                    .addComponent(shipsLabel)))
+	                .addContainerGap(142, Short.MAX_VALUE))
+	        );
+	        layout.setVerticalGroup(
+	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+	                .addContainerGap(51, Short.MAX_VALUE)
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addComponent(separateur, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                        .addGroup(layout.createSequentialGroup()
+	                            .addComponent(gameModeLabel)
+	                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                            .addComponent(demoMode)
+	                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                            .addComponent(onePlayerMode)
+	                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                            .addComponent(twoPlayersMode)
+	                            .addGap(23, 23, 23))
+	                        .addGroup(layout.createSequentialGroup()
+	                            .addComponent(battleTypeLabel)
+	                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                            .addComponent(battleshipType)
+	                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                            .addComponent(radarType)
+	                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                            .addComponent(artilleryOperationType)
+	                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                            .addComponent(redAlertType))))
+                        .addGap(59, 59, 59)
+                .addComponent(shipsLabel)
+                .addGap(36, 36, 36)
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                    .addComponent(nuclearSubmarineChk)
+	                    .addComponent(aircraftCarrierChk)
+	                    .addComponent(stealthBattleship1Chk))
+	                .addGap(71, 71, 71)
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                    .addComponent(stealthBattleship2Chk)
+	                    .addComponent(zodiacChk))
+	                .addGap(75, 75, 75)
+	                .addComponent(startBtn)
+	                .addGap(48, 48, 48))
+	        );
+	        
+	        cards = new CardLayout();   
+	        cardsPanel = new JPanel();
+	        cardsPanel.setLayout(cards);
 		
-		
-		// game elements container
-		//premiere page
-		/*firstCardPanel = new JPanel();
-		cards = new CardLayout();
-		cardsPanel = new JPanel();
-		cardsPanel.setLayout(cards);*/
-		
-		
-		
-		//seconde page
-		secondCardPanel = new JPanel();
-		cards = new CardLayout();	
-		cardsPanel = new JPanel();
-		cardsPanel.setLayout(cards);
-		cards.show(cardsPanel, "First Screen");
-		cardsPanel.add(firstCardPanel, "Fruits");
-        cardsPanel.add(secondCardPanel, "Veggies");
 	}
 	
 	/*public Container buildContentPane() {
@@ -173,71 +213,24 @@ public class Window extends JFrame implements Observer{
 
 	private void initGameElements(){		
 		//premiere grille du joueur 1
+		secondCardPanel = new JPanel();
 		secondCardPanel.add(new JLabel("Gamer 1"));
 		secondCardPanel.add(new Grid() );
 		
 		//seconde grille pour le joueur 2
 		secondCardPanel.add(new JLabel("Gamer 2"));
 		secondCardPanel.add(new Grid() );
-		
-
-		
-		
-		
-		
 	}
 	
+	public CardLayout getCards() {
+        return cards;
+    }
+	
+	public JPanel getCardsPanel() {
+        return cardsPanel;
+    }
 	
 	@Override
 	public void update(Observable arg0, Object arg1) {}
-	
-	public CardLayout getCards() {
-		return cards;
-	}
-
-	public void setCards(CardLayout cards) {
-		this.cards = cards;
-	}
-
-	public JPanel getCardsPanel() {
-		return cardsPanel;
-	}
-
-	public void setCardsPanel(JPanel cardsPanel) {
-		this.cardsPanel = cardsPanel;
-	}
-
-	public static AbstractButton getTypepanel() {
-		return TypePanel;
-	}
-
-	public static Component getShip() {
-		return Ship;
-	}
-
-	public JButton getPlayBtn() {
-		return playBtn;
-	}
-
-	public void setPlayBtn(JButton playBtn) {
-		this.playBtn = playBtn;
-	}
-
-	public JLabel getGameModeLabel() {
-		return gameModeLabel;
-	}
-
-	public void setGameModeLabel(JLabel gameModeLabel) {
-		this.gameModeLabel = gameModeLabel;
-	}
-
-	public JLabel getGameModeTextView() {
-		return gameModeTextView;
-	}
-
-	public void setGameModeTextView(JLabel gameModeTextView) {
-		this.gameModeTextView = gameModeTextView;
-	}
-
 	
 }
