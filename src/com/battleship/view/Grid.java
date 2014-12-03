@@ -33,9 +33,6 @@ public class Grid extends JPanel{
                 cellPane.setCellX(row);
                 cellPane.setCellY(col);
                 
-                
-                
-                
                 Border border = null;
                 if (row < 9) {
                     if (col < 9) {

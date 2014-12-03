@@ -14,15 +14,11 @@ public class ButtonsActionListener implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
 		switch (e.getActionCommand()){
 			case "Switch Card":
 				mView.getCards().next( mView.getCardsPanel() );
 			break;
 		}
-		
-		System.out.print("btn clicked " + e.getActionCommand() );
 	}
-	
 }
  

@@ -22,7 +22,7 @@ public class Cell  extends JPanel{
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(40, 40);
+        return new Dimension(30, 30);
     }
 
 	public int getCellX() {

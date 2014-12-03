@@ -4,6 +4,7 @@ import com.battleship.model.ButtonsActionListener;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -28,10 +29,9 @@ public class Window extends JFrame implements Observer{
 	private static final Component Ship = null;
 	private static final AbstractButton TypePanel = null;
 
-	private CardLayout cards = new CardLayout();
-	private JPanel cardsPanel, secondCardPanel;
+	private CardLayout cards;
+	private JPanel cardsPanel, gameElementsPanel, gameGridPanel;
 	
-	JPanel gameElementsPanel;
 	private JRadioButton demoMode, onePlayerMode, twoPlayersMode;
 	private JRadioButton battleshipType, radarType, artilleryOperationType, redAlertType;
 	private JCheckBox aircraftCarrierChk, nuclearSubmarineChk, stealthBattleship1Chk, stealthBattleship2Chk, zodiacChk;
@@ -41,7 +41,8 @@ public class Window extends JFrame implements Observer{
 	private ButtonsActionListener listener;
 	private JLabel gameModeTextView;
 
-	public Window(){
+	public Window()
+	{
 		this.setTitle("Bataille Navale");  //On donne un titre à l'application
 	    this.setSize(750,550);  //Pour redimentionner la taille de la fenetre du menu
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //On dit à l'application de se fermer lors du clic sur la croix
@@ -52,8 +53,15 @@ public class Window extends JFrame implements Observer{
 	    gameElementsPanel = new JPanel();
 	    this.initElements();
 	    this.initGameElements();
+	    
+	    cards = new CardLayout();   
+        cardsPanel = new JPanel();
+        cardsPanel.setLayout(cards);
+        
+        cardsPanel.add(gameElementsPanel);
+        cardsPanel.add(gameGridPanel);
 	                   
-	    this.setContentPane(gameElementsPanel);
+	    this.setContentPane(cardsPanel);
 	    this.setVisible(true);//visibilité de la fenetre
 	}
 	
@@ -200,26 +208,22 @@ public class Window extends JFrame implements Observer{
 	                .addGap(48, 48, 48))
 	        );
 	        
-	        cards = new CardLayout();   
-	        cardsPanel = new JPanel();
-	        cardsPanel.setLayout(cards);
-		
 	}
 	
-	/*public Container buildContentPane() {
+	public Container buildContentPane() {
 		// TODO Auto-generated method stub
 		return null;
-	}*/
+	}
 
 	private void initGameElements(){		
 		//premiere grille du joueur 1
-		secondCardPanel = new JPanel();
-		secondCardPanel.add(new JLabel("Gamer 1"));
-		secondCardPanel.add(new Grid() );
+		gameGridPanel = new JPanel();
+		gameGridPanel.add(new JLabel("Gamer 1"));
+		gameGridPanel.add(new Grid() );
 		
 		//seconde grille pour le joueur 2
-		secondCardPanel.add(new JLabel("Gamer 2"));
-		secondCardPanel.add(new Grid() );
+		gameGridPanel.add(new JLabel("Gamer 2"));
+		gameGridPanel.add(new Grid() );
 	}
 	
 	public CardLayout getCards() {
@@ -229,6 +233,11 @@ public class Window extends JFrame implements Observer{
 	public JPanel getCardsPanel() {
         return cardsPanel;
     }
+	
+	public JPanel getGameGridPanel()
+	{
+		return this.gameGridPanel;
+	}
 	
 	@Override
 	public void update(Observable arg0, Object arg1) {}
