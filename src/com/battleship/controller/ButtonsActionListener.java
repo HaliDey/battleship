@@ -1,4 +1,4 @@
-package com.battleship.model;
+package com.battleship.controller;
 
 import com.battleship.view.Window;
 import java.awt.event.ActionEvent;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import com.battleship.observer.Observable;
 import com.battleship.observer.Observer;
 
-public abstract class AbstractModel implements Observable{	
+public class Model implements Observable{	
   
 	//Implémentation du pattern observer
 	public void addObserver(Observer obs) {
@@ -20,6 +20,12 @@ public abstract class AbstractModel implements Observable{
 	}
 
 	public void reset() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addObserver(java.util.Observer obs) {
 		// TODO Auto-generated method stub
 		
 	}

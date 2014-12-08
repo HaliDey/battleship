@@ -1,5 +1,5 @@
 package com.battleship.view;
-import com.battleship.model.ButtonsActionListener;
+import com.battleship.controller.ButtonsActionListener;
 
 import java.awt.CardLayout;
 import java.awt.Color;

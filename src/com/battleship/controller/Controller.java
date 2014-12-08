@@ -1,17 +1,17 @@
 package com.battleship.controller;
 
 import com.battleship.model.Coordinates;
-import com.battleship.model.AbstractModel;
+import com.battleship.model.Model;
 
-public abstract class AbstractController {
+public abstract class Controller {
 
 	
-	protected AbstractModel ship;
+	protected Model ship;
 	protected Coordinates coordinates = new Coordinates(0,0); /*Initialization coordonnées à 0*/
 	
 
 
-	public AbstractController(AbstractModel ship){
+	public Controller(Model ship){
 		this.ship=ship;
 	}
 

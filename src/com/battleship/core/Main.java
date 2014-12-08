@@ -1,7 +1,5 @@
 package com.battleship.core;
 
-import javax.swing.SwingUtilities;
-
 import com.battleship.controller.*;
 import com.battleship.model.*;
 import com.battleship.view.*;
@@ -9,7 +7,7 @@ import com.battleship.view.*;
 public class Main {
 	
 	public static void main(String[] args) {
-		AbstractModel mod = new BattleShip();  
+		Model mod = new Model();  
 		
 		
 		Window win = new Window();
