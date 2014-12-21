@@ -15,11 +15,7 @@ public abstract class Controller {
 		this.ship=ship;
 	}
 
-	//Efface (methode aussi dans AbstractModel)
-	  public void reset(){
-	     this.ship.reset();
-	  }
-	  
+ 
 	//Méthode de contrôle
 	  abstract void control();
 	}

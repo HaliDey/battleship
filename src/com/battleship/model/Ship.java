@@ -13,7 +13,7 @@ import com.battleship.model.Coordinates;
  * Sayadi Atef
  * 
  */
-public abstract class Ship {
+public class Ship {
 	
 		private int numbercell;
 		private String shipname;
