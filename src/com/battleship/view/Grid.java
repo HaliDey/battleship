@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 
-import com.battleship.model.GridListener;
+import com.battleship.controller.GridListener;
 
 public class Grid extends JPanel{	
 	

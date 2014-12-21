@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 
-import com.battleship.model.GridListener;
+import com.battleship.controller.GridListener;
 
 public class Cell  extends JPanel{
 	public Color defaultBackground;

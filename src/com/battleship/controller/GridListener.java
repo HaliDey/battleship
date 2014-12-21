@@ -1,4 +1,4 @@
-package com.battleship.model;
+package com.battleship.controller;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
