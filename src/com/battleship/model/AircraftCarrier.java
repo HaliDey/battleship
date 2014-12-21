@@ -12,8 +12,9 @@ package com.battleship.model;
  */
 public class AircraftCarrier extends Ship{
 	
-	public AircraftCarrier(){
-		super(coordinates);
+	public AircraftCarrier (Coordinates c, String orientation)
+	{
+		super(c, orientation, 5);
 	}
 
 }

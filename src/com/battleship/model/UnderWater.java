@@ -11,11 +11,10 @@ package com.battleship.model;
  */
 public class UnderWater extends Ship{
 
-	public UnderWater(){
-		
-		super(null);
-		
+	public UnderWater(Coordinates c, String orientation)
+	{
+		super(c, orientation, 4);
 	}
 	
-	}
+}
 

@@ -12,8 +12,8 @@ package com.battleship.model;
  */
 public class IronClad extends Ship{
 
-	public IronClad(){
-		super(coordinates);
-		
+	public IronClad(Coordinates c, String orientation)
+	{
+		super(c, orientation, 3);
 	}
 }

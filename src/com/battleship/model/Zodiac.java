@@ -12,8 +12,8 @@ package com.battleship.model;
  */
 public class Zodiac extends Ship {
 
-	public Zodiac(){
-		super(coordinates);
-		
+	public Zodiac(Coordinates c, String orientation)
+	{
+		super(c, orientation, 2);
 	}
 }

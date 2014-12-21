@@ -15,23 +15,15 @@ import com.battleship.model.Coordinates;
  */
 public abstract class Ship {
  
-	static Coordinates coordinates;
-	private int target; // the target( darar(cible))
- 
-// declaration de l'enumeration
-	enum status {
-		horizontal,
-		verticale
-	};
+	private Coordinates coordinates;
+	private String orientation;
+	private int weight; // the target( darar(cible))
 	
-	public Ship(Coordinates c){ 
-		this.coordinates=c;
+	public Ship(Coordinates c, String orientation, int weight){ 
+		this.coordinates = c;
+		this.orientation = orientation;
+		this.weight = weight;
 	}
+	
 
-	
-	public void increaseTarget(){
-		this.target++;
-	}
-	
-	//initialisation à 0 dans joueur
 }
