@@ -23,15 +23,11 @@ public class Gamer {
 	protected Grid gd;
 	private Monitors adversarygrid;
 
-	public Gamer(Ship s[]){
-		this.ship = s;	
+	public Gamer( ){
 	}
 	
 	public void shoot (Coordinates c){
-
 		//renvoi si c'est toucher ou pas 
-
-
 	}
 	
 	 
