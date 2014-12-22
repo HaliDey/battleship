@@ -3,9 +3,7 @@ package com.battleship.model;
 import com.battleship.model.Coordinates;
 import com.battleship.model.Monitors;
 import com.battleship.model.Ship;
-
-
-//les imports
+import com.battleship.view.Grid;
 
 /**
  * @author 
@@ -23,8 +21,8 @@ public class Gamer {
 	private Grid grid;
 	private Monitors adversarygrid;
 
-	public Gamer(Grid grid, Ship ships[]){
-		this.setGrid(grid);
+	public Gamer(com.battleship.view.Grid grid2, Ship ships[]){
+		this.setGrid(grid2);
 		this.setShips(ships);
 		
 	}
@@ -59,8 +57,8 @@ public class Gamer {
 		return grid;
 	}
 
-	public void setGrid(Grid grid) {
-		this.grid = grid;
+	public void setGrid(Grid grid2) {
+		this.grid = grid2;
 	}
 
 	public Ship[] getShips() {

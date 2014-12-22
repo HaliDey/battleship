@@ -1,21 +1,21 @@
 package com.battleship.model;
 
-import java.util.HashMap;
+import com.battleship.observer.Observable;
+import com.battleship.view.Grid;
 
-public class Game {
+public class GameModel implements Observable {
 
 	private Gamer gamers[];
 	private int currentGamer;
 	private Ship ships[];
 
-	public Game(){
+	public GameModel(){
 		this.optiongame();
 		
 		this.gamers = new Gamer[2];
 		this.gamers[0] = new Gamer(new Grid(), ships);
 		this.gamers[1] = new IA(new Grid(), ships);
 		this.currentGamer = 1;
-		
 	}
 
 	public void optiongame(){
@@ -28,7 +28,6 @@ public class Game {
 		this.ships[4] = new Ship("zodiac", new Coordinates(), "", 2);
 	}
 	
-	
 	public Gamer getFirstGamer()
 	{
 		return this.gamers[0];
@@ -38,5 +37,25 @@ public class Game {
 	{
 		return this.gamers[1];
 	}
+
+	@Override
+	public void addObserver(com.battleship.view.Grid grid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeObserver() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObserver(com.battleship.view.Grid grid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 	
 }

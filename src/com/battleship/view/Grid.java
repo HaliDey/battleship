@@ -1,29 +1,26 @@
 package com.battleship.view;
 
-
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.event.MouseAdapter; 
-import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 
-import com.battleship.controller.GridListener;
-
 public class Grid extends JPanel{	
-	
-	
+	private static final long serialVersionUID = 5451380659929409310L;
+	private GridBagConstraints gbc;
 	
 	public Grid (){
 		setLayout(new GridBagLayout());
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        for (int row = 0; row < 10; row++) {
+        this.gbc = new GridBagConstraints();
+        
+        this.initGrid();
+	}
+	
+	public void initGrid(){
+		for (int row = 0; row < 10; row++) {
             for (int col = 0; col < 10; col++) {
                 gbc.gridx = col;
                 gbc.gridy = row;
@@ -49,11 +46,13 @@ public class Grid extends JPanel{
                 }
                 cellPane.setBorder(border);
                 add(cellPane, gbc);
+                
             }
         }
 	}
-	
-	
-	//class Cell
 
+	public GridBagConstraints getGbc() {
+		return gbc;
+	}
+	
 }

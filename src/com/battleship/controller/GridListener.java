@@ -26,8 +26,6 @@ public class GridListener implements MouseListener{
 		// TODO Auto-generated method stub
 		 this.cell.defaultBackground = this.cell.getBackground();
 		 this.cell.setBackground(Color.BLUE);
-		 
-		 
 	}
 
 	@Override

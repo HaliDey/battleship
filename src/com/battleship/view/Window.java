@@ -1,18 +1,14 @@
 package com.battleship.view;
-import com.battleship.controller.ButtonsActionListener;
+
+import com.battleship.controller.GameController;
+import com.battleship.observer.Observer;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.AbstractButton;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -26,6 +22,7 @@ import javax.swing.JSeparator;
 
 public class Window extends JFrame implements Observer{
 
+	private static final long serialVersionUID = -8106084731437307782L;
 	private static final Component Ship = null;
 	private static final AbstractButton TypePanel = null;
 
@@ -38,7 +35,11 @@ public class Window extends JFrame implements Observer{
 	private JButton startBtn, playBtn;
 	private GroupLayout layout;
 	
-	private ButtonsActionListener listener;
+	private static Grid gamer1Grid;
+	public static Grid gamer2Grid;
+	public ButtonGroup gameModeGroup, battleTypeGroup;
+	
+	private GameController listener;
 	private JLabel gameModeTextView;
 
 	public Window()
@@ -49,7 +50,7 @@ public class Window extends JFrame implements Observer{
 	    this.setLocationRelativeTo(null);  //On centre la fenêtre sur l'écran
 	    this.setResizable(false);
 	    
-	    listener = new ButtonsActionListener(this);
+	    listener = new GameController(this);
 	    gameElementsPanel = new JPanel();
 	    this.initElements();
 	    this.initGameElements();
@@ -72,10 +73,15 @@ public class Window extends JFrame implements Observer{
 		 */
 		JLabel gameModeLabel = new JLabel("Mode de jeu");
 		gameModeLabel.setFont(new Font("Segoe UI",Font.PLAIN,18));
-		ButtonGroup gameModeGroup = new ButtonGroup();
-		demoMode = new JRadioButton("Demo mode");
+		gameModeGroup = new ButtonGroup();
+		demoMode = new JRadioButton("Demo mode", true);
+		demoMode.setActionCommand("Demo mode");
 		onePlayerMode = new JRadioButton("1 player Mode");
+		onePlayerMode.setActionCommand("1 player Mode");
+		onePlayerMode.setEnabled(false);
 		twoPlayersMode = new JRadioButton("2 players Mode");
+		twoPlayersMode.setEnabled(false);
+		twoPlayersMode.setActionCommand("2 player Mode");
 		//Grouper les Radio btns pour limiter la selection
 		gameModeGroup.add(demoMode);
 		gameModeGroup.add(onePlayerMode);
@@ -86,11 +92,18 @@ public class Window extends JFrame implements Observer{
 		 */
 		JLabel battleTypeLabel = new JLabel("Type de bataille");
 		battleTypeLabel.setFont(new Font("Segoe UI",Font.PLAIN,18));
-		ButtonGroup battleTypeGroup = new ButtonGroup();
-		battleshipType = new JRadioButton("Battle Ship");
+		battleTypeGroup = new ButtonGroup();
+		battleshipType = new JRadioButton("Battle Ship", true);
+		battleshipType.setActionCommand("Battle Ship");
 		radarType = new JRadioButton("Mission radar player");
+		radarType.setActionCommand("Mission radar player");
+		radarType.setEnabled(false);
 		artilleryOperationType = new JRadioButton("Artillery operation player");
+		artilleryOperationType.setActionCommand("Artillery operation player");
+		artilleryOperationType.setEnabled(false);
 		redAlertType = new JRadioButton("Red Alert");
+		redAlertType.setActionCommand("Red Alert");
+		redAlertType.setEnabled(false);
 		//Grouper les Radio btns pour limiter la selection
 		battleTypeGroup.add(battleshipType);
 		battleTypeGroup.add(radarType);
@@ -102,7 +115,6 @@ public class Window extends JFrame implements Observer{
 		 */
 		JLabel shipsLabel = new JLabel("Navires");
 		shipsLabel.setFont(new java.awt.Font("Segoe UI", 0, 18));
-		battleTypeGroup = new ButtonGroup();
 		aircraftCarrierChk = new JCheckBox("AirecraftCarrier");//porte avions
 		nuclearSubmarineChk = new JCheckBox("Nuclear SubMarine");//sous marin nucleaire
 		stealthBattleship1Chk = new JCheckBox("Stealth armor first");//cuirasses furtifs
@@ -210,6 +222,10 @@ public class Window extends JFrame implements Observer{
 	        
 	}
 	
+	public JButton getStartBtn() {
+		return startBtn;
+	}
+
 	public Container buildContentPane() {
 		// TODO Auto-generated method stub
 		return null;
@@ -219,11 +235,13 @@ public class Window extends JFrame implements Observer{
 		//premiere grille du joueur 1
 		gameGridPanel = new JPanel();
 		gameGridPanel.add(new JLabel("Gamer 1"));
-		gameGridPanel.add(new Grid() );
+		gamer1Grid = new Grid();
+		gameGridPanel.add( gamer1Grid );
 		
 		//seconde grille pour le joueur 2
 		gameGridPanel.add(new JLabel("Gamer 2"));
-		gameGridPanel.add(new Grid() );
+		gamer2Grid = new Grid();
+		gameGridPanel.add(gamer2Grid );
 	}
 	
 	public CardLayout getCards() {
@@ -238,8 +256,25 @@ public class Window extends JFrame implements Observer{
 	{
 		return this.gameGridPanel;
 	}
-	
+
 	@Override
-	public void update(Observable arg0, Object arg1) {}
+	public void update(Grid grid) {
+		// TODO Auto-generated method stub
+		this.gamer2Grid = grid;
+		System.out.println("update");
+	}
+	
+	/*public  Grid getGamer1Grid() {
+		return gamer1Grid;
+	}
+
+	public  Grid getGamer2Grid() {
+		return gamer2Grid;
+	}
+	
+	public  void setGamer2Grid(Grid grid) {
+		gamer2Grid = grid;
+	}*/
+
 	
 }
