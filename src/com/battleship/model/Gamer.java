@@ -16,23 +16,18 @@ import com.battleship.model.Ship;
  */
 public class Gamer {
 
-	private Ship ship[];
+	private Ship ships[];
 	private String name;
 	private int goal;
 	private int nb_stockes;    /*number of stockes(nombre de coups(attaques)*/
-	protected Grid gd;
+	private Grid grid;
 	private Monitors adversarygrid;
 
-	public Gamer( ){
+	public Gamer(Grid grid, Ship ships[]){
+		this.setGrid(grid);
+		this.setShips(ships);
+		
 	}
-	
-	public void shoot (Coordinates c){
-		//renvoi si c'est toucher ou pas 
-	}
-	
-	 
- 
-
 
 	public Monitors getAdversarygrid() 
 	{
@@ -58,6 +53,22 @@ public class Gamer {
 		}
 		this.setAdversarygrid(adversarygrid);
 		this.nb_stockes = 0;
+	}
+
+	public Grid getGrid() {
+		return grid;
+	}
+
+	public void setGrid(Grid grid) {
+		this.grid = grid;
+	}
+
+	public Ship[] getShips() {
+		return ships;
+	}
+
+	public void setShips(Ship ships[]) {
+		this.ships = ships;
 	}
 
 

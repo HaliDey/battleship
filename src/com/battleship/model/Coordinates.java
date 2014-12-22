@@ -8,8 +8,8 @@ package com.battleship.model;
  * Seurin Audrey
  * Zerrouq Noha
  * Sayadi Atef
- * 
  */
+
 public class Coordinates {
 
 //declaration des attributs
@@ -20,6 +20,11 @@ public class Coordinates {
 	public Coordinates(int x, int y){
 		this.x=x;
 		this.y=y;
+	}
+	
+	public Coordinates(){
+		this.x = 0;
+		this.y = 0;
 
 	}
 	
