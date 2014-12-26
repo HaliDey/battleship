@@ -5,15 +5,9 @@ import com.battleship.observer.Observable;
 import com.battleship.view.GridWindow;
 import com.battleship.view.Window;
 import com.battleship.view.Grid;
-import com.battleship.view.Cell;
 
-import java.awt.Color;
-import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.border.Border;
-import javax.swing.border.MatteBorder;
 
 
 public class GameController implements ActionListener, Observable{

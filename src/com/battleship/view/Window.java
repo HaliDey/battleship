@@ -1,9 +1,7 @@
 package com.battleship.view;
 
 import com.battleship.controller.GameController;
-import com.battleship.observer.Observer;
 
-import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
@@ -33,12 +31,9 @@ public class Window extends JFrame{
 	private JButton startBtn, playBtn;
 	private GroupLayout layout;
 	
-	private static Grid gamer1Grid;
-	public static Grid gamer2Grid;
 	public ButtonGroup gameModeGroup, battleTypeGroup;
 	
 	private GameController listener;
-	private JLabel gameModeTextView;
 
 	public Window()
 	{
@@ -119,14 +114,12 @@ public class Window extends JFrame{
 		stealthBattleship2Chk = new JCheckBox("Stealth armor second");//cuirasses furtifs
 		zodiacChk = new JCheckBox("Zodiac");
 		
-		
 		/*
 		 * Placer les elements 
 		 */
 		startBtn = new JButton("Commencer");
 		startBtn.setActionCommand("Switch Card");
         startBtn.addActionListener(listener);//ajout d'un ecouteur sur le bouton start
-        
         
 		layout = new GroupLayout(gameElementsPanel);
 		gameElementsPanel.setLayout( layout );
@@ -229,19 +222,6 @@ public class Window extends JFrame{
 		return null;
 	}
 
-	private void initGameElements(){		
-		//premiere grille du joueur 1
-		gameGridPanel = new JPanel();
-		gameGridPanel.add(new JLabel("Gamer 1"));
-		gamer1Grid = new Grid();
-		gameGridPanel.add( gamer1Grid );
-		
-		//seconde grille pour le joueur 2
-		gameGridPanel.add(new JLabel("Gamer 2"));
-		gamer2Grid = new Grid();
-		gameGridPanel.add(gamer2Grid );
-	}
-	
 	public JPanel getCardsPanel() {
         return cardsPanel;
     }
@@ -251,17 +231,4 @@ public class Window extends JFrame{
 		return this.gameGridPanel;
 	}
 
-	/*public  Grid getGamer1Grid() {
-		return gamer1Grid;
-	}
-
-	public  Grid getGamer2Grid() {
-		return gamer2Grid;
-	}
-	
-	public  void setGamer2Grid(Grid grid) {
-		gamer2Grid = grid;
-	}*/
-
-	
 }
