@@ -3,9 +3,7 @@ package com.battleship.controller;
 
 import java.util.Random;
 
-import com.battleship.view.Grid;
 import com.battleship.model.Coordinates;
-import com.battleship.model.Gamer;
 import com.battleship.model.Ship;
 
 

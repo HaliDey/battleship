@@ -1,14 +1,10 @@
 package com.battleship.view;
 
 import com.battleship.controller.GameController;
-import com.battleship.observer.Observer;
 
-import java.awt.CardLayout;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
 
-import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -22,23 +18,18 @@ import javax.swing.JSeparator;
 public class Window extends JFrame{
 
 	private static final long serialVersionUID = -8106084731437307782L;
-	private static final Component Ship = null;
-	private static final AbstractButton TypePanel = null;
 
 	private JPanel cardsPanel, gameElementsPanel, gameGridPanel;
 	
 	private JRadioButton demoMode, onePlayerMode, twoPlayersMode;
 	private JRadioButton battleshipType, radarType, artilleryOperationType, redAlertType;
 	private JCheckBox aircraftCarrierChk, nuclearSubmarineChk, stealthBattleship1Chk, stealthBattleship2Chk, zodiacChk;
-	private JButton startBtn, playBtn;
+	private JButton startBtn;
 	private GroupLayout layout;
 	
-	private static Grid gamer1Grid;
-	public static Grid gamer2Grid;
 	public ButtonGroup gameModeGroup, battleTypeGroup;
 	
 	private GameController listener;
-	private JLabel gameModeTextView;
 
 	public Window()
 	{
@@ -51,14 +42,6 @@ public class Window extends JFrame{
 	    listener = new GameController(this);
 	    gameElementsPanel = new JPanel();
 	    this.initElements();
-	    //this.initGameElements();
-	    
-	    /*cards = new CardLayout();   
-        cardsPanel = new JPanel();
-        cardsPanel.setLayout(cards);
-        
-        cardsPanel.add(gameElementsPanel);
-       !!!! cardsPanel.add(gameGridPanel);!!!*/
 	                   
 	    this.setContentPane(gameElementsPanel);
 	    this.setVisible(true);//visibilité de la fenetre
@@ -229,19 +212,6 @@ public class Window extends JFrame{
 		return null;
 	}
 
-	private void initGameElements(){		
-		//premiere grille du joueur 1
-		gameGridPanel = new JPanel();
-		gameGridPanel.add(new JLabel("Gamer 1"));
-		gamer1Grid = new Grid();
-		gameGridPanel.add( gamer1Grid );
-		
-		//seconde grille pour le joueur 2
-		gameGridPanel.add(new JLabel("Gamer 2"));
-		gamer2Grid = new Grid();
-		gameGridPanel.add(gamer2Grid );
-	}
-	
 	public JPanel getCardsPanel() {
         return cardsPanel;
     }
@@ -250,18 +220,4 @@ public class Window extends JFrame{
 	{
 		return this.gameGridPanel;
 	}
-
-	/*public  Grid getGamer1Grid() {
-		return gamer1Grid;
-	}
-
-	public  Grid getGamer2Grid() {
-		return gamer2Grid;
-	}
-	
-	public  void setGamer2Grid(Grid grid) {
-		gamer2Grid = grid;
-	}*/
-
-	
 }
