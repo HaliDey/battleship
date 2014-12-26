@@ -1,8 +1,7 @@
 package com.battleship.view;
 
 import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -10,21 +9,18 @@ import javax.swing.border.MatteBorder;
 
 public class Grid extends JPanel{	
 	private static final long serialVersionUID = 5451380659929409310L;
-	private GridBagConstraints gbc;
+	public Cell tab[][];
 	
 	public Grid (){
-		setLayout(new GridBagLayout());
-        this.gbc = new GridBagConstraints();
-        
+		this.setLayout(new GridLayout(10, 10));
+		this.tab = new Cell[10][10];
         this.initGrid();
 	}
 	
 	public void initGrid(){
 		for (int row = 0; row < 10; row++) {
             for (int col = 0; col < 10; col++) {
-                gbc.gridx = col;
-                gbc.gridy = row;
-
+            	
                 Cell cellPane = new Cell();
                 
                 cellPane.setCellX(row);
@@ -45,14 +41,17 @@ public class Grid extends JPanel{
                     }
                 }
                 cellPane.setBorder(border);
-                add(cellPane, gbc);
                 
+                try{
+                	this.tab[row][col] = cellPane;
+                } catch(Exception e){
+                	System.err.println("Erreur !! row : "+row+" col : "+col);
+                }
+                
+                this.add(cellPane);
             }
+            
         }
-	}
-
-	public GridBagConstraints getGbc() {
-		return gbc;
 	}
 	
 }

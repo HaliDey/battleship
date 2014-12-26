@@ -24,14 +24,13 @@ public class GridListener implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		 this.cell.defaultBackground = this.cell.getBackground();
-		 this.cell.setBackground(Color.BLUE);
+		this.cell.setBackground(Color.BLUE);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		this.cell.setBackground(this.cell.defaultBackground);
+		this.cell.setBackground(this.cell.getDefaultBackground());
 	}
 
 	@Override

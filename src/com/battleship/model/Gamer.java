@@ -1,9 +1,8 @@
 package com.battleship.model;
 
-import com.battleship.model.Coordinates;
+import com.battleship.view.Grid;
 import com.battleship.model.Monitors;
 import com.battleship.model.Ship;
-import com.battleship.view.Grid;
 
 /**
  * @author 
@@ -21,7 +20,7 @@ public class Gamer {
 	private Grid grid;
 	private Monitors adversarygrid;
 
-	public Gamer(com.battleship.view.Grid grid2, Ship ships[]){
+	public Gamer(Grid grid2, Ship ships[]){
 		this.setGrid(grid2);
 		this.setShips(ships);
 		

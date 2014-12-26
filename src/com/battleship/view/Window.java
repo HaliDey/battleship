@@ -19,14 +19,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
 
-
-public class Window extends JFrame implements Observer{
+public class Window extends JFrame{
 
 	private static final long serialVersionUID = -8106084731437307782L;
 	private static final Component Ship = null;
 	private static final AbstractButton TypePanel = null;
 
-	private CardLayout cards;
 	private JPanel cardsPanel, gameElementsPanel, gameGridPanel;
 	
 	private JRadioButton demoMode, onePlayerMode, twoPlayersMode;
@@ -53,16 +51,16 @@ public class Window extends JFrame implements Observer{
 	    listener = new GameController(this);
 	    gameElementsPanel = new JPanel();
 	    this.initElements();
-	    this.initGameElements();
+	    //this.initGameElements();
 	    
-	    cards = new CardLayout();   
+	    /*cards = new CardLayout();   
         cardsPanel = new JPanel();
         cardsPanel.setLayout(cards);
         
         cardsPanel.add(gameElementsPanel);
-        cardsPanel.add(gameGridPanel);
+       !!!! cardsPanel.add(gameGridPanel);!!!*/
 	                   
-	    this.setContentPane(cardsPanel);
+	    this.setContentPane(gameElementsPanel);
 	    this.setVisible(true);//visibilité de la fenetre
 	}
 	
@@ -244,10 +242,6 @@ public class Window extends JFrame implements Observer{
 		gameGridPanel.add(gamer2Grid );
 	}
 	
-	public CardLayout getCards() {
-        return cards;
-    }
-	
 	public JPanel getCardsPanel() {
         return cardsPanel;
     }
@@ -257,13 +251,6 @@ public class Window extends JFrame implements Observer{
 		return this.gameGridPanel;
 	}
 
-	@Override
-	public void update(Grid grid) {
-		// TODO Auto-generated method stub
-		this.gamer2Grid = grid;
-		System.out.println("update");
-	}
-	
 	/*public  Grid getGamer1Grid() {
 		return gamer1Grid;
 	}

@@ -2,16 +2,17 @@ package com.battleship.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 
 import com.battleship.controller.GridListener;
 
 public class Cell  extends JPanel{
-	public Color defaultBackground;
+	private static final long serialVersionUID = 6514348540018007371L;
+	private Color defaultBackground;
 	private GridListener listener;
+	
+
 	private int cellX;
 	private int cellY;
 
@@ -41,5 +42,21 @@ public class Cell  extends JPanel{
 		this.cellY = cellY;
 	}
     
+	
+	public GridListener getListener() {
+		return listener;
+	}
+
+	public void setListener(GridListener listener) {
+		this.listener = listener;
+	}
+
+	public Color getDefaultBackground() {
+		return defaultBackground;
+	}
+
+	public void setDefaultBackground(Color defaultBackground) {
+		this.defaultBackground = defaultBackground;
+	}
     
 }
