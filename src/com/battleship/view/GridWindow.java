@@ -4,11 +4,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.battleship.controller.GameController;
 import com.battleship.observer.Observer;
 
 public class GridWindow extends JFrame implements Observer{
 
-	private static final long serialVersionUID = -3399602846645562507L;
 	private JPanel mainPanel;
 	
 	public GridWindow(Grid gamer1Grid, Grid gamer2Grid){

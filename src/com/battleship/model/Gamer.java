@@ -1,6 +1,7 @@
 package com.battleship.model;
 
 import com.battleship.view.Grid;
+import com.battleship.model.Monitors;
 import com.battleship.model.Ship;
 
 /**
@@ -17,11 +18,38 @@ public class Gamer {
 	private int goal;
 	private int nb_stockes;    /*number of stockes(nombre de coups(attaques)*/
 	private Grid grid;
+	private Monitors adversarygrid;
 
 	public Gamer(Grid grid2, Ship ships[]){
 		this.setGrid(grid2);
 		this.setShips(ships);
 		
+	}
+
+	public Monitors getAdversarygrid() 
+	{
+		return adversarygrid;
+	}
+
+
+	public void setAdversarygrid(Monitors adversarygrid) 
+	{
+		this.adversarygrid = adversarygrid;
+	}
+
+
+	//initialise a gamer before the game
+
+
+	void initialisr(Monitors adversarygrid) throws NullPointerException
+	{
+		if (adversarygrid == null)
+		{
+			throw new NullPointerException("the monitor of the gamer " + 
+					this.name + " est incorrect"); 
+		}
+		this.setAdversarygrid(adversarygrid);
+		this.nb_stockes = 0;
 	}
 
 	public Grid getGrid() {
