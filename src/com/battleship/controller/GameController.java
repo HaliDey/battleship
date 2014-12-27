@@ -37,13 +37,10 @@ public class GameController implements ActionListener, Observable{
 				
 				GridWindow gw = new GridWindow(iac.getGrid(), iac2.getGrid()); 
 				
-				//for (int i=0; i<50; i++)
 				while ("Partie en cours" == game.getGameStatus())
 				{
 					gamer1.shoot();
 					gamer2.shoot();
-					
-					//System.in.read();
 				}
 
 				System.out.println( game.getGameStatus() );

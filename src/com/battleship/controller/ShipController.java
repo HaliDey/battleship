@@ -11,8 +11,8 @@ public class ShipController{
 	private static GameModel game; 
 	
 	public ShipController(GameModel game, Ship[] gamer1Ships, Ship[] gamer2Ships){
-		gamer1Ships = gamer1Ships;
-		gamer2Ships = gamer2Ships;
+		ShipController.gamer1Ships = gamer1Ships;
+		ShipController.gamer2Ships = gamer2Ships;
 		game = game;
 	}
 
@@ -21,12 +21,12 @@ public class ShipController{
 		Ship[] ships = null;
 		if (1 == GameModel.getCurrentGamer()  ){
 			//Premier joueur (Grille de Gauche)
-			ships = gamer1Ships;
+			ships = ShipController.gamer1Ships;
 			tour = "Gamer 1";
 			GameModel.setCurrentGamer(2);
 		} else {
 			//Deuxième joueur (Grille de Droite)
-			ships = gamer2Ships;
+			ships = ShipController.gamer2Ships;
 			tour = "Gamer 2";
 			GameModel.setCurrentGamer(1);
 		}
@@ -60,12 +60,12 @@ public class ShipController{
 		return false;
 	}
 	
-	public static Ship[] getGamer1Ships() {
-		return gamer1Ships;
+	public Ship[] getGamer1Ships() {
+		return this.gamer1Ships;
 	}
 
 	public void setGamer1Ships(Ship[] gamer1Ships) {
-		ShipController.gamer1Ships = gamer1Ships;
+		this.gamer1Ships = gamer1Ships;
 	}
 	
 	
