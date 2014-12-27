@@ -74,6 +74,8 @@ public class GameController implements ActionListener, Observable{
 				break;
 				
 			case "2 player Mode":
+				System.out.println("2 players Mode Selected");
+				
 				GamerController gc1 = new GamerController( gamer1.getShips(), game.getFirstGamer().getGrid(), game.getShipsCoordinatesGamer1() );
 				GamerController gc2 = new GamerController( gamer2.getShips(), game.getSecondGamer().getGrid(), game.getShipsCoordinatesGamer2() );
 				ShipController sc3 = new ShipController(game, gamer1.getShips(), gamer2.getShips());

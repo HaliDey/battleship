@@ -12,7 +12,8 @@ public class GameModel implements Observable {
 	private Ship shipsGamer1[], shipsGamer2[];
 	private static String gameMode, gameType, gameStatus;
 
-	private ArrayList<Coordinates> shipsCoordinatesGamer1, shipsCoordinatesGamer2;
+	private ArrayList<Coordinates> shipsCoordinatesGamer1;
+	private static ArrayList<Coordinates> shipsCoordinatesGamer2;
 
 	public GameModel(String gameMode, String gameType){
 		this.optiongame();
@@ -85,7 +86,7 @@ public class GameModel implements Observable {
 		this.shipsCoordinatesGamer1 = shipsCoordinatesGamer1;
 	}
 
-	public ArrayList<Coordinates> getShipsCoordinatesGamer2() {
+	public static ArrayList<Coordinates> getShipsCoordinatesGamer2() {
 		return shipsCoordinatesGamer2;
 	}
 

@@ -9,20 +9,23 @@ import com.battleship.view.Grid;
 
 public class IA extends Gamer {
 	
-	private Grid grid;
+	private static Grid grid;
 	
 	public IA(Grid grid, Ship ships[]){
 		super(grid, ships);
-		this.grid = grid;
+		IA.grid = grid;
 	}
 	
+	public Grid getGrid() {
+		return IA.grid;
+	}
+
 	public void shoot(){
 		Random rand = new Random();
 		int x = rand.nextInt(10);
 		int y = rand.nextInt(10);
 		
-		Cell cell = grid.tab[x][y];
-		
+		Cell cell = IA.grid.tab[x][y];
 		
 		if (cell.getGridSide() == GameModel.getCurrentGamer())
 		{

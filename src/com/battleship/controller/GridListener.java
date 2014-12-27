@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.battleship.model.Coordinates;
 import com.battleship.model.GameModel;
+import com.battleship.model.IA;
 import com.battleship.view.Cell;
 
 
@@ -49,7 +51,7 @@ public class GridListener implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("Cell side : " + this.cell.getGridSide() + " Current Gamer :: " + GameModel.getCurrentGamer());
+
 		if (this.cell.getGridSide() == GameModel.getCurrentGamer())
 		{
 			if (null != this.cell.getDefaultBackground())
@@ -78,6 +80,20 @@ public class GridListener implements MouseListener{
 			System.out.println("C'est pas ton tour [GridListener]");
 		}
 		
+		
+		if ("1 player Mode" == GameModel.getGameMode())
+		{
+			
+		}
+		
+	}
+
+	public Cell getCell() {
+		return cell;
+	}
+
+	public void setCell(Cell cell) {
+		this.cell = cell;
 	}
 
 	@Override
