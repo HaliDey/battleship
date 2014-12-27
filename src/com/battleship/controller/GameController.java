@@ -17,29 +17,77 @@ public class GameController implements ActionListener, Observable{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		switch (e.getActionCommand()){
-			case "Switch Card":
-			break;
-		}
 		
 		//Initialisation des options du jeu (class Game dans le model)
-		String mode = this.mView.gameModeGroup.getSelection().getActionCommand();
-		String type = this.mView.battleTypeGroup.getSelection().getActionCommand();
+		GameModel game = new GameModel(this.mView.gameModeGroup.getSelection().getActionCommand(),
+									   this.mView.battleTypeGroup.getSelection().getActionCommand());
 		
-		GameModel game = new GameModel();
-		Gamer gamer = game.getFirstGamer();
-		Gamer ia = game.getSecondGamer();
+		//Initialisation des Joueurs
+		Gamer gamer1 = game.getFirstGamer();
+		Gamer gamer2 = game.getSecondGamer();		
 		
-		IAController iac = new IAController( game.getFirstGamer().getGrid(),  game.getFirstGamer().getShips() );
-		IAController iac2 = new IAController( game.getSecondGamer().getGrid(), game.getSecondGamer().getShips() );
+		switch( game.getGameMode() ){
+			case "Demo mode":
+				IAController iac = new IAController( gamer1.getShips(), game.getFirstGamer().getGrid(), game.getShipsCoordinatesGamer1() );
+				IAController iac2 = new IAController( gamer2.getShips(), game.getSecondGamer().getGrid(), game.getShipsCoordinatesGamer2() );
+				ShipController sc = new ShipController(game, gamer1.getShips(), gamer2.getShips());
+				
+				mView.setVisible(false);
+				mView.dispose();
+				
+				GridWindow gw = new GridWindow(iac.getGrid(), iac2.getGrid()); 
+				
+				//for (int i=0; i<50; i++)
+				while ("Partie en cours" == game.getGameStatus())
+				{
+					gamer1.shoot();
+					gamer2.shoot();
+					
+					//System.in.read();
+				}
+
+				System.out.println( game.getGameStatus() );
+				
+				System.out.println("Gamer 1");
+				for (Ship tmp : gamer1.getShips())
+				{
+					System.out.println( tmp.toString() );
+				}
+				
+				System.out.println("Gamer 2");
+				for (Ship tmp : gamer2.getShips())
+				{
+					System.out.println( tmp.toString() );
+				}
+				
+				break;
+				
+			case "1 player Mode":
+				System.out.println("1 player Mode Selected");
+				
+				GamerController gc = new GamerController( gamer1.getShips(), game.getFirstGamer().getGrid(), game.getShipsCoordinatesGamer1() );
+				IAController iac1 = new IAController( gamer2.getShips(), game.getSecondGamer().getGrid(), game.getShipsCoordinatesGamer2() );
+				
+				ShipController sc2 = new ShipController(game, gamer1.getShips(), gamer2.getShips());
+				
+				mView.setVisible(false);
+				mView.dispose();
+				
+				GridWindow gw2 = new GridWindow(gc.getGrid(), iac1.getGrid()); 
+				break;
+				
+			case "2 player Mode":
+				GamerController gc1 = new GamerController( gamer1.getShips(), game.getFirstGamer().getGrid(), game.getShipsCoordinatesGamer1() );
+				GamerController gc2 = new GamerController( gamer2.getShips(), game.getSecondGamer().getGrid(), game.getShipsCoordinatesGamer2() );
+				ShipController sc3 = new ShipController(game, gamer1.getShips(), gamer2.getShips());
+				
+				mView.setVisible(false);
+				mView.dispose();
+				
+				GridWindow gw3 = new GridWindow(gc1.getGrid(), gc2.getGrid()); 
+				break;
+		}
 		
-		mView.setVisible(false); //you can't see me!
-		mView.dispose(); //Destroy the JFrame object
-		
-		GridWindow gw = new GridWindow(iac.getGrid(), iac2.getGrid());  
-		
-		//mView.getCards().next( mView.getCardsPanel() );
 	}
 	
 	@Override

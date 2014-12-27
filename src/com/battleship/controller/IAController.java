@@ -2,6 +2,7 @@ package com.battleship.controller;
 
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import com.battleship.model.Coordinates;
 import com.battleship.model.Ship;
@@ -11,10 +12,13 @@ import com.battleship.view.Grid;
 public class IAController {
 	private Ship ships[];
 	private Grid grid;
-	
-	public IAController(Grid grid, Ship ships[]){
+	private ArrayList<Coordinates> shipsCoordinates;
+		
+	public IAController(Ship ships[], Grid grid, ArrayList<Coordinates> shipsCoordinates){
 		this.ships = ships;
 		this.grid = grid;
+		this.shipsCoordinates = shipsCoordinates;
+		
 		this.placeShip();
 	}
 	
@@ -53,22 +57,25 @@ public class IAController {
 		{
 			System.out.println( tmp.getShipname() + " - " + tmp.getOrientation() + " - " + tmp.getCoordinates().getX() + " - " + tmp.getCoordinates().getY() );
 			
-			//Cell cell = (Cell) this.grid.getComponentAt(tmp.getCoordinates().getX(), tmp.getCoordinates().getY());
-         	//cell.setBackground(Color.CYAN);
-         	
 			try{
 				if (tmp.getOrientation() == "H")
 				{    
 				    for (int i=tmp.getCoordinates().getY(); i<tmp.getCoordinates().getY()+tmp.getNumbercell(); i++){
 				        Cell cellPane = this.grid.tab[tmp.getCoordinates().getX()][i];
-				        cellPane.setBackground(Color.CYAN);
-				        cellPane.setDefaultBackground(Color.CYAN);
+				        cellPane.setBackground(Color.ORANGE);
+				        cellPane.setDefaultBackground(Color.ORANGE);
+				        
+				        //Ajout des coordonnées 
+				        this.shipsCoordinates.add(new Coordinates (tmp.getCoordinates().getX(), i));
 				    }
 				} else {    
 				    for (int i=tmp.getCoordinates().getX(); i<tmp.getCoordinates().getX()+tmp.getNumbercell(); i++){
 				       Cell cellPane = this.grid.tab[i][tmp.getCoordinates().getY()];
-				       cellPane.setBackground(Color.CYAN);
-				       cellPane.setDefaultBackground(Color.CYAN);
+				       cellPane.setBackground(Color.ORANGE);
+				       cellPane.setDefaultBackground(Color.ORANGE);
+				       
+				    	//Ajout des coordonnées
+				        this.shipsCoordinates.add(new Coordinates (i, tmp.getCoordinates().getY()));
 				    }
 				}
 	         	
@@ -77,8 +84,18 @@ public class IAController {
             }
 				
 		}
+		
+		this.grid.setShipsCoordinates( this.shipsCoordinates );
 	}
 	
+	public Ship[] getShips() {
+		return ships;
+	}
+
+	public void setShips(Ship[] ships) {
+		this.ships = ships;
+	}
+
 	public Grid getGrid() {
 		return grid;
 	}

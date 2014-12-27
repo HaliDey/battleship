@@ -2,26 +2,34 @@ package com.battleship.view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 
+import com.battleship.model.Coordinates;
+import com.battleship.model.GameModel;
+
 public class Grid extends JPanel{	
 	private static final long serialVersionUID = 5451380659929409310L;
 	public Cell tab[][];
-	
-	public Grid (){
+	private ArrayList<Coordinates> shipsCoordinates;
+	private int side;
+
+	public Grid (ArrayList<Coordinates> shipsCoordinates, int side){
 		this.setLayout(new GridLayout(10, 10));
 		this.tab = new Cell[10][10];
+		this.side = side;
         this.initGrid();
+        this.shipsCoordinates = shipsCoordinates;
 	}
 	
 	public void initGrid(){
 		for (int row = 0; row < 10; row++) {
             for (int col = 0; col < 10; col++) {
             	
-                Cell cellPane = new Cell();
+                Cell cellPane = new Cell(this.shipsCoordinates, this.side);
                 
                 cellPane.setCellX(row);
                 cellPane.setCellY(col);
@@ -52,6 +60,18 @@ public class Grid extends JPanel{
             }
             
         }
+	}
+
+	public ArrayList<Coordinates> getShipsCoordinates() {
+		return shipsCoordinates;
+	}
+
+	public void setShipsCoordinates(ArrayList<Coordinates> shipsCoordinates) {
+		this.shipsCoordinates = shipsCoordinates;
+	}
+	
+	public int getSide() {
+		return side;
 	}
 	
 }

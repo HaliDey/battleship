@@ -2,23 +2,27 @@ package com.battleship.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import com.battleship.controller.GridListener;
+import com.battleship.model.Coordinates;
+import com.battleship.model.GameModel;
 
 public class Cell  extends JPanel{
+	
 	private static final long serialVersionUID = 6514348540018007371L;
 	private Color defaultBackground;
 	private GridListener listener;
-	
-
 	private int cellX;
 	private int cellY;
+	private int gridSide;
 
-    public Cell() {
-    	listener = new GridListener (this);
+    public Cell(ArrayList<Coordinates> shipsCoordinates, int gridSide) {
+    	listener = new GridListener (this, shipsCoordinates);
     	this.addMouseListener(listener);    	
+    	this.gridSide = gridSide;
     }
 
     @Override
@@ -58,5 +62,9 @@ public class Cell  extends JPanel{
 	public void setDefaultBackground(Color defaultBackground) {
 		this.defaultBackground = defaultBackground;
 	}
-    
+
+	public int getGridSide() {
+		return gridSide;
+	}
+
 }

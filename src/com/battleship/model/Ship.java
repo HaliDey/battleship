@@ -42,10 +42,21 @@ public class Ship {
 	
 	public void incDamage()
 	{
-		this.damage++;
+		if (!this.estCoule())
+		{
+			this.damage++;
+		}
+		System.out.println(this.toString());
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "Ship [numbercell=" + numbercell + ", shipname=" + shipname
+				+ ", damage=" + damage + ", coordinates=" + coordinates
+				+ ", orientation=" + orientation + ", estCouler=" + this.estCoule() + "]";
+	}
+
 	public boolean estCoule()
 	{
 		return this.damage == this.numbercell ? true : false;

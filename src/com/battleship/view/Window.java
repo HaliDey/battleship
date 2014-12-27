@@ -61,7 +61,7 @@ public class Window extends JFrame{
 		onePlayerMode.setActionCommand("1 player Mode");
 		onePlayerMode.setEnabled(false);
 		twoPlayersMode = new JRadioButton("2 players Mode");
-		twoPlayersMode.setEnabled(false);
+		//twoPlayersMode.setEnabled(false);
 		twoPlayersMode.setActionCommand("2 player Mode");
 		//Grouper les Radio btns pour limiter la selection
 		gameModeGroup.add(demoMode);

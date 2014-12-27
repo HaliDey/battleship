@@ -1,6 +1,5 @@
 package com.battleship.model;
 
-//les imports
 
 /**
  * @author 
@@ -12,11 +11,11 @@ package com.battleship.model;
 
 public class Coordinates {
 
-//declaration des attributs
+	//declaration des attributs
 	private int x;
 	private int y;
 	
-//declaration du constructeur
+	//declaration du constructeur
 	public Coordinates(int x, int y){
 		this.x=x;
 		this.y=y;
@@ -32,26 +31,13 @@ public class Coordinates {
 		return x;
 	}
 
-	public void setX(int x) {
-		this.x = x;
-	}
-
 	public int getY() {
 		return y;
 	}
 
-	public void setY(int y) {
-		this.y = y;
+	@Override
+	public String toString() {
+		return "Coordinates [x=" + x + ", y=" + y + "]";
 	}
 
-	public boolean getPosition_coordinates() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public Object getShip() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }
