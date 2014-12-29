@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import com.battleship.controller.GridListener;
+import com.battleship.controller.GridController;
 import com.battleship.model.Coordinates;
 import com.battleship.model.GameModel;
 
@@ -14,13 +14,13 @@ public class Cell  extends JPanel{
 	
 	private static final long serialVersionUID = 6514348540018007371L;
 	private Color defaultBackground;
-	private GridListener listener;
+	private GridController listener;
 	private int cellX;
 	private int cellY;
 	private int gridSide;
 
     public Cell(ArrayList<Coordinates> shipsCoordinates, int gridSide) {
-    	listener = new GridListener (this, shipsCoordinates);
+    	listener = new GridController (this, shipsCoordinates);
     	this.addMouseListener(listener);    	
     	this.gridSide = gridSide;
     }
@@ -47,11 +47,11 @@ public class Cell  extends JPanel{
 	}
     
 	
-	public GridListener getListener() {
+	public GridController getListener() {
 		return listener;
 	}
 
-	public void setListener(GridListener listener) {
+	public void setListener(GridController listener) {
 		this.listener = listener;
 	}
 

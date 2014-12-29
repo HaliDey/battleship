@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.battleship.observer.Observable;
 import com.battleship.view.Grid;
 
-public class GameModel implements Observable {
+public class GameModel{
 
 	private Gamer gamers[];
 	private static int currentGamer;
@@ -50,6 +50,15 @@ public class GameModel implements Observable {
 		this.shipsGamer2[4] = new Ship("zodiac", new Coordinates(), "", 2);
 	}
 	
+	public boolean checkShips(Ship[] ships){
+		for (Ship tmp : ships){
+			if (!tmp.estCoule()) return false;
+		}
+		
+		System.out.println("Partie fini !" + gameStatus);
+		return true;
+	}
+	
 	public Gamer getFirstGamer()
 	{
 		return this.gamers[0];
@@ -58,24 +67,6 @@ public class GameModel implements Observable {
 	public Gamer getSecondGamer()
 	{
 		return this.gamers[1];
-	}
-
-	@Override
-	public void addObserver(com.battleship.view.Grid grid) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeObserver() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void notifyObserver(com.battleship.view.Grid grid) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public ArrayList<Coordinates> getShipsCoordinatesGamer1() {
@@ -124,11 +115,5 @@ public class GameModel implements Observable {
 		this.gameStatus = gameStatus;
 	}
 	
-	public boolean checkShips(Ship[] ships){
-		for (Ship tmp : ships){
-			if (!tmp.estCoule()) return false;
-		}
-		
-		return true;
-	}
+	
 }

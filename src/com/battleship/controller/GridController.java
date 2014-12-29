@@ -12,12 +12,12 @@ import com.battleship.model.IA;
 import com.battleship.view.Cell;
 
 
-public class GridListener implements MouseListener{
+public class GridController implements MouseListener{
 
 	private Cell cell;
 	private ArrayList<Coordinates> shipsCoordinates;
 	
-	public GridListener(Cell cell, ArrayList<Coordinates> shipsCoordinates){
+	public GridController(Cell cell, ArrayList<Coordinates> shipsCoordinates){
 		this.cell = cell;
 		this.shipsCoordinates = shipsCoordinates;
 	}
@@ -33,7 +33,7 @@ public class GridListener implements MouseListener{
 		// TODO Auto-generated method stub
 		if ("Demo mode" != GameModel.getGameMode() && this.cell.getGridSide() == GameModel.getCurrentGamer())
 		{
-			if (Color.RED != this.cell.getDefaultBackground()){
+			if (Color.RED != this.cell.getDefaultBackground() && Color.DARK_GRAY != this.cell.getDefaultBackground() ){
 				this.cell.setBackground(Color.BLUE);
 			}
 		}
@@ -56,7 +56,7 @@ public class GridListener implements MouseListener{
 		{
 			if (null != this.cell.getDefaultBackground())
 			{
-				if (this.cell.getDefaultBackground().equals(Color.DARK_GRAY))
+				if (this.cell.getDefaultBackground().equals(Color.DARK_GRAY) || this.cell.getDefaultBackground().equals(Color.RED))
 				{
 					System.out.println("Case déja frapper");
 				} else {
@@ -79,13 +79,6 @@ public class GridListener implements MouseListener{
 		} else {
 			System.out.println("C'est pas ton tour [GridListener]");
 		}
-		
-		
-		if ("1 player Mode" == GameModel.getGameMode())
-		{
-			
-		}
-		
 	}
 
 	public Cell getCell() {

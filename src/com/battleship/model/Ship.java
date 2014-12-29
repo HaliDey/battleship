@@ -2,9 +2,6 @@ package com.battleship.model;
 
 import com.battleship.model.Coordinates;
 
-
-//les imports
-
 /**
  * @author 
  * Maamma Halima
@@ -25,7 +22,7 @@ public class Ship {
 	{
 		this.numbercell = numbercell;
 		this.shipname = shipname;
-		this.damage=0;
+		this.damage = 0;
 		this.setCoordinates(c);
 		this.orientation = orientation;
 	}
@@ -46,7 +43,7 @@ public class Ship {
 		{
 			this.damage++;
 		}
-		System.out.println(this.toString());
+		System.out.println("[Ship Model | incDamage]" + this.toString());
 	}
 	
 	
