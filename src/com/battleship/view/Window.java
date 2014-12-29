@@ -23,7 +23,7 @@ public class Window extends JFrame{
 	
 	private JRadioButton demoMode, onePlayerMode, twoPlayersMode;
 	private JRadioButton battleshipType, radarType, artilleryOperationType, redAlertType;
-	private JCheckBox aircraftCarrierChk, nuclearSubmarineChk, stealthBattleship1Chk, stealthBattleship2Chk, zodiacChk;
+	public JCheckBox aircraftCarrierChk, nuclearSubmarineChk, stealthBattleship1Chk, stealthBattleship2Chk, zodiacChk;
 	private JButton startBtn;
 	private GroupLayout layout;
 	

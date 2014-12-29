@@ -30,7 +30,6 @@ public class Gamer {
 	public void shoot(){
 		System.out.println("[GamerModel | shoot]");
 		
-		
 	}
 	
 	public Grid getGrid() {

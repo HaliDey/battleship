@@ -8,6 +8,7 @@ import com.battleship.view.Grid;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 
 public class GameController implements ActionListener, Observable{
 	private Window mView;
@@ -21,6 +22,17 @@ public class GameController implements ActionListener, Observable{
 		//Initialisation des options du jeu (class Game dans le model)
 		GameModel game = new GameModel(this.mView.gameModeGroup.getSelection().getActionCommand(),
 									   this.mView.battleTypeGroup.getSelection().getActionCommand());
+		
+		//Initialisation des bateaux
+		Ship[] ships = new Ship[5];
+		int selectedShips = 0;
+		if (this.mView.aircraftCarrierChk.isSelected()){ships[selectedShips++] = new Ship("porte-avion", new Coordinates(), "", 5);}
+		if (this.mView.nuclearSubmarineChk.isSelected()){ships[selectedShips++] = new Ship("sous-marin nucléaire", new Coordinates(), "", 4);}
+		if (this.mView.stealthBattleship1Chk.isSelected()){ships[selectedShips++] = new Ship("cuirassés furtifs 1", new Coordinates(), "", 3);}
+		if (this.mView.stealthBattleship2Chk.isSelected()){ships[selectedShips++] = new Ship("cuirassés furtifs 2", new Coordinates(), "", 3);}
+		if (this.mView.zodiacChk.isSelected()){ships[selectedShips++] = new Ship("zodiac", new Coordinates(), "", 2);}
+		
+		System.out.println(selectedShips);
 		
 		//Initialisation des Joueurs
 		Gamer gamer1 = game.getFirstGamer();
@@ -37,6 +49,15 @@ public class GameController implements ActionListener, Observable{
 				
 				GridWindow gw = new GridWindow(iac.getGrid(), iac2.getGrid()); 
 				
+				
+				/*gamer1.shoot();
+				gamer2.shoot();
+				
+				gamer1.shoot();
+				gamer2.shoot();
+				
+				gamer1.shoot();
+				gamer2.shoot();*/
 				while ("Partie en cours" == game.getGameStatus())
 				{
 					gamer1.shoot();

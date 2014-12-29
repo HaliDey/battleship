@@ -100,9 +100,4 @@ public class IAController {
 		return grid;
 	}
 
-	public void shoot(){
-		
-	}
-	
-	
 }
