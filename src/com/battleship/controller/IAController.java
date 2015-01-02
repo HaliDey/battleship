@@ -3,6 +3,8 @@ package com.battleship.controller;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Vector;
 
 import com.battleship.model.Coordinates;
 import com.battleship.model.Ship;
@@ -10,11 +12,11 @@ import com.battleship.view.Cell;
 import com.battleship.view.Grid;
 
 public class IAController {
-	private Ship ships[];
+	private Vector<Ship> ships;
 	private Grid grid;
 	private ArrayList<Coordinates> shipsCoordinates;
 		
-	public IAController(Ship ships[], Grid grid, ArrayList<Coordinates> shipsCoordinates){
+	public IAController(Vector<Ship> ships, Grid grid, ArrayList<Coordinates> shipsCoordinates){
 		this.ships = ships;
 		this.grid = grid;
 		this.shipsCoordinates = shipsCoordinates;
@@ -30,7 +32,25 @@ public class IAController {
 		Coordinates c4 = new Coordinates(6,2);
 		Coordinates c5 = new Coordinates(9,7);
 		
-		this.ships[0].setOrientation("H");
+		Coordinates c = new Coordinates();
+		String orientation = "";
+		int nbr = 0;
+		
+		for (Ship tmp : this.ships)
+		{
+			//int numbercell = tmp.getNumbercell();
+			
+			Random rand = new Random();
+			nbr = rand.nextInt(2)+1;
+			orientation = (nbr == 2) ? "H" : "V";
+			
+			System.out.println(orientation);
+			
+			tmp.setOrientation(orientation);
+			tmp.setCoordinates( new Coordinates(rand.nextInt(10), rand.nextInt(10)) );
+		}
+		
+		/*this.ships[0].setOrientation("H");
 		this.ships[1].setOrientation("V");
 		this.ships[2].setOrientation("V");
 		this.ships[3].setOrientation("H");
@@ -40,7 +60,7 @@ public class IAController {
 		this.ships[1].setCoordinates(c2);
 		this.ships[2].setCoordinates(c3);
 		this.ships[3].setCoordinates(c4);
-		this.ships[4].setCoordinates(c5);
+		this.ships[4].setCoordinates(c5);*/
 		
 		/*for(Ship tmp : this.ships){
 			int numbercell = tmp.getNumbercell();
@@ -88,11 +108,11 @@ public class IAController {
 		this.grid.setShipsCoordinates( this.shipsCoordinates );
 	}
 	
-	public Ship[] getShips() {
+	public Vector<Ship> getShips() {
 		return ships;
 	}
 
-	public void setShips(Ship[] ships) {
+	public void setShips(Vector<Ship> ships) {
 		this.ships = ships;
 	}
 

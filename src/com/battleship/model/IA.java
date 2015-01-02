@@ -2,6 +2,7 @@ package com.battleship.model;
 
 import java.awt.Color;
 import java.util.Random;
+import java.util.Vector;
 
 import com.battleship.controller.ShipController;
 import com.battleship.view.Cell;
@@ -11,7 +12,7 @@ public class IA extends Gamer {
 	
 	private  Grid grid;
 	
-	public IA(Grid grid, Ship ships[]){
+	public IA(Grid grid, Vector<Ship> ships){
 		super(grid, ships);
 		this.grid = grid;
 	}

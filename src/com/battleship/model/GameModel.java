@@ -1,6 +1,7 @@
 package com.battleship.model;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import com.battleship.view.Grid;
 
@@ -8,17 +9,21 @@ public class GameModel{
 
 	private Gamer gamers[];
 	private static int currentGamer;
-	private Ship shipsGamer1[], shipsGamer2[];
+	private Vector<Ship> shipsGamer1, shipsGamer2;
 	private static String gameMode, gameType, gameStatus;
 
 	private ArrayList<Coordinates> shipsCoordinatesGamer1;
 	private static ArrayList<Coordinates> shipsCoordinatesGamer2;
 
-	public GameModel(String gameMode, String gameType){
-		this.optiongame();
+	public GameModel(String gameMode, String gameType, Vector<Ship> ships){
+		//this.optiongame();
 		
 		this.gameMode = gameMode;
 		this.gameType = gameType;
+		
+		this.shipsGamer1 = ships;
+		this.shipsGamer2 = ships;
+		
 		this.setGameStatus("Partie en cours");
 
 		this.shipsCoordinatesGamer1 = new ArrayList<Coordinates>();
@@ -31,25 +36,8 @@ public class GameModel{
 		
 		currentGamer = 1;
 	}
-
-	public void optiongame(){
-		// initialiser les bateaux
-		this.shipsGamer1    = new Ship[5];
-		this.shipsGamer1[0] = new Ship("porte-avion", new Coordinates(), "", 5);
-		this.shipsGamer1[1] = new Ship("sous-marin nucléaire", new Coordinates(), "", 4);
-		this.shipsGamer1[2] = new Ship("cuirassés furtifs 1", new Coordinates(), "", 3);
-		this.shipsGamer1[3] = new Ship("cuirassés furtifs 2", new Coordinates(), "", 3);
-		this.shipsGamer1[4] = new Ship("zodiac", new Coordinates(), "", 2);
-		
-		this.shipsGamer2    = new Ship[5];
-		this.shipsGamer2[0] = new Ship("porte-avion", new Coordinates(), "", 5);
-		this.shipsGamer2[1] = new Ship("sous-marin nucléaire", new Coordinates(), "", 4);
-		this.shipsGamer2[2] = new Ship("cuirassés furtifs 1", new Coordinates(), "", 3);
-		this.shipsGamer2[3] = new Ship("cuirassés furtifs 2", new Coordinates(), "", 3);
-		this.shipsGamer2[4] = new Ship("zodiac", new Coordinates(), "", 2);
-	}
 	
-	public boolean checkShips(Ship[] ships){
+	public boolean checkShips(Vector<Ship> ships){
 		for (Ship tmp : ships){
 			if (!tmp.estCoule()) return false;
 		}

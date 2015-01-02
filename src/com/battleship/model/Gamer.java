@@ -1,6 +1,8 @@
 package com.battleship.model;
 
 
+import java.util.Vector;
+
 import com.battleship.view.Grid;
 import com.battleship.model.Ship;
 
@@ -13,13 +15,13 @@ import com.battleship.model.Ship;
  */
 public class Gamer {
 
-	private Ship ships[];
+	private Vector<Ship> ships;
 	private String name;
 	private int goal;
 	private int nb_stockes;    /*number of stockes(nombre de coups(attaques)*/
 	private Grid grid;
 
-	public Gamer(Grid grid, Ship ships[]){
+	public Gamer(Grid grid, Vector<Ship> ships){
 		this.setGrid(grid);
 		this.setShips(ships);
 	}
@@ -37,11 +39,11 @@ public class Gamer {
 		this.grid = grid;
 	}
 
-	public Ship[] getShips() {
+	public Vector<Ship> getShips() {
 		return ships;
 	}
 
-	public void setShips(Ship ships[]) {
+	public void setShips(Vector<Ship> ships) {
 		this.ships = ships;
 	}
 

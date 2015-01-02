@@ -6,6 +6,9 @@ import com.battleship.view.Window;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
+
+import javax.swing.JOptionPane;
 
 public class GameController implements ActionListener{
 	private Window mView;
@@ -16,20 +19,27 @@ public class GameController implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		
+		//Initialisation des bateaux
+		//Ship[] ships = new Ship[5];
+		Vector<Ship> ships = new Vector<Ship>();
+		
+		int selectedShips = 0;
+		if (this.mView.aircraftCarrierChk.isSelected()){ships.add(new Ship("porte-avion", new Coordinates(), "", 5));selectedShips++;}
+		if (this.mView.nuclearSubmarineChk.isSelected()){ships.add(new Ship("sous-marin nucléaire", new Coordinates(), "", 4));selectedShips++;}
+		if (this.mView.stealthBattleship1Chk.isSelected()){ships.add(new Ship("cuirassés furtifs 1", new Coordinates(), "", 3));selectedShips++;}
+		if (this.mView.stealthBattleship2Chk.isSelected()){ships.add(new Ship("cuirassés furtifs 2", new Coordinates(), "", 3));selectedShips++;}
+		if (this.mView.zodiacChk.isSelected()){ships.add(new Ship("zodiac", new Coordinates(), "", 2));selectedShips++;}
+		
+		if (0 == selectedShips)
+		{
+			JOptionPane.showMessageDialog(this.mView, "Vous devez au moin séléctionner un navire");
+			return;
+		}
+		
 		//Initialisation des options du jeu (class Game dans le model)
 		GameModel game = new GameModel(this.mView.gameModeGroup.getSelection().getActionCommand(),
-									   this.mView.battleTypeGroup.getSelection().getActionCommand());
-		
-		//Initialisation des bateaux
-		Ship[] ships = new Ship[5];
-		int selectedShips = 0;
-		if (this.mView.aircraftCarrierChk.isSelected()){ships[selectedShips++] = new Ship("porte-avion", new Coordinates(), "", 5);}
-		if (this.mView.nuclearSubmarineChk.isSelected()){ships[selectedShips++] = new Ship("sous-marin nucléaire", new Coordinates(), "", 4);}
-		if (this.mView.stealthBattleship1Chk.isSelected()){ships[selectedShips++] = new Ship("cuirassés furtifs 1", new Coordinates(), "", 3);}
-		if (this.mView.stealthBattleship2Chk.isSelected()){ships[selectedShips++] = new Ship("cuirassés furtifs 2", new Coordinates(), "", 3);}
-		if (this.mView.zodiacChk.isSelected()){ships[selectedShips++] = new Ship("zodiac", new Coordinates(), "", 2);}
-		
-		
+											   this.mView.battleTypeGroup.getSelection().getActionCommand(), ships);
+				
 		//Initialisation des Joueurs
 		Gamer gamer1 = game.getFirstGamer();
 		Gamer gamer2 = game.getSecondGamer();		

@@ -1,6 +1,8 @@
 package com.battleship.controller;
 
 
+import java.util.Vector;
+
 import com.battleship.model.GameModel;
 import com.battleship.model.Ship;
 import com.battleship.view.GridWindow;
@@ -8,10 +10,10 @@ import com.battleship.view.GridWindow;
 
 public class ShipController{
 	
-	private static Ship[] gamer1Ships, gamer2Ships;
+	private static Vector<Ship> gamer1Ships, gamer2Ships;
 	private static GameModel game; 
 	
-	public ShipController(GameModel game, Ship[] gamer1Ships, Ship[] gamer2Ships){
+	public ShipController(GameModel game, Vector<Ship> gamer1Ships, Vector<Ship> gamer2Ships){
 		ShipController.gamer1Ships = gamer1Ships;
 		ShipController.gamer2Ships = gamer2Ships;
 		ShipController.game = game;
@@ -20,7 +22,7 @@ public class ShipController{
 	public static boolean isTouched(int x, int y){
 		String currentPlayer;
 		
-		Ship[] ships = null;
+		Vector<Ship> ships = null;
 		
 		if (1 == GameModel.getCurrentGamer()  ){
 			//Premier joueur (Grille de Gauche)
@@ -86,11 +88,11 @@ public class ShipController{
 	}
 		
 	
-	public Ship[] getGamer1Ships() {
+	public Vector<Ship> getGamer1Ships() {
 		return ShipController.gamer1Ships;
 	}
 
-	public void setGamer1Ships(Ship[] gamer1Ships) {
+	public void setGamer1Ships(Vector<Ship> gamer1Ships) {
 		ShipController.gamer1Ships = gamer1Ships;
 	}
 	

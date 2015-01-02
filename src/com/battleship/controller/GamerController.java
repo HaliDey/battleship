@@ -2,6 +2,7 @@ package com.battleship.controller;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import com.battleship.model.Coordinates;
 import com.battleship.model.Ship;
@@ -10,11 +11,11 @@ import com.battleship.view.Grid;
 
 public class GamerController {
 	
-	private Ship ships[];
+	private Vector<Ship> ships;
 	private Grid grid;
 	private ArrayList<Coordinates> shipsCoordinates;
 	
-	public GamerController(Ship ships[], Grid grid, ArrayList<Coordinates> shipsCoordinates){
+	public GamerController(Vector<Ship> ships, Grid grid, ArrayList<Coordinates> shipsCoordinates){
 		this.ships = ships;
 		this.grid = grid;
 		this.shipsCoordinates = shipsCoordinates;
@@ -24,7 +25,7 @@ public class GamerController {
 	
 public void placeShip(){
 		
-		Coordinates c1 = new Coordinates(0,0);
+	/*Coordinates c1 = new Coordinates(0,0);
 		Coordinates c2 = new Coordinates(3,7);
 		Coordinates c3 = new Coordinates(2,4);
 		Coordinates c4 = new Coordinates(6,2);
@@ -42,7 +43,7 @@ public void placeShip(){
 		this.ships[3].setCoordinates(c4);
 		this.ships[4].setCoordinates(c5);
 		
-		/*for(Ship tmp : this.ships){
+		for(Ship tmp : this.ships){
 			int numbercell = tmp.getNumbercell();
 			
 			Random rand = new Random();
@@ -92,11 +93,11 @@ public void placeShip(){
 		
 	}
 	
-	public Ship[] getShips() {
+	public Vector<Ship> getShips() {
 		return ships;
 	}
 
-	public void setShips(Ship[] ships) {
+	public void setShips(Vector<Ship> ships) {
 		this.ships = ships;
 	}
 

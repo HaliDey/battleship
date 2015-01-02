@@ -2,7 +2,6 @@ package com.battleship.view;
 
 import com.battleship.controller.GameController;
 
-import java.awt.Container;
 import java.awt.Font;
 
 import javax.swing.ButtonGroup;
@@ -19,7 +18,7 @@ public class Window extends JFrame{
 
 	private static final long serialVersionUID = -8106084731437307782L;
 
-	private JPanel cardsPanel, gameElementsPanel, gameGridPanel;
+	private JPanel gameElementsPanel;
 	
 	private JRadioButton demoMode, onePlayerMode, twoPlayersMode;
 	private JRadioButton battleshipType, radarType, artilleryOperationType, redAlertType;
@@ -207,17 +206,4 @@ public class Window extends JFrame{
 		return startBtn;
 	}
 
-	public Container buildContentPane() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public JPanel getCardsPanel() {
-        return cardsPanel;
-    }
-	
-	public JPanel getGameGridPanel()
-	{
-		return this.gameGridPanel;
-	}
 }
