@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 
 import com.battleship.controller.GridController;
 import com.battleship.model.Coordinates;
-import com.battleship.model.GameModel;
 
 public class Cell  extends JPanel{
 	

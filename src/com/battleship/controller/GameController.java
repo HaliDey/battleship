@@ -1,16 +1,13 @@
 package com.battleship.controller;
 
 import com.battleship.model.*;
-import com.battleship.observer.Observable;
 import com.battleship.view.GridWindow;
 import com.battleship.view.Window;
-import com.battleship.view.Grid;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 
-public class GameController implements ActionListener, Observable{
+public class GameController implements ActionListener{
 	private Window mView;
 
 	public GameController (Window window){
@@ -32,7 +29,6 @@ public class GameController implements ActionListener, Observable{
 		if (this.mView.stealthBattleship2Chk.isSelected()){ships[selectedShips++] = new Ship("cuirassés furtifs 2", new Coordinates(), "", 3);}
 		if (this.mView.zodiacChk.isSelected()){ships[selectedShips++] = new Ship("zodiac", new Coordinates(), "", 2);}
 		
-		System.out.println(selectedShips);
 		
 		//Initialisation des Joueurs
 		Gamer gamer1 = game.getFirstGamer();
@@ -48,16 +44,6 @@ public class GameController implements ActionListener, Observable{
 				mView.dispose();
 				
 				GridWindow gw = new GridWindow(iac.getGrid(), iac2.getGrid()); 
-				
-				
-				/*gamer1.shoot();
-				gamer2.shoot();
-				
-				gamer1.shoot();
-				gamer2.shoot();
-				
-				gamer1.shoot();
-				gamer2.shoot();*/
 				while ("Partie en cours" == game.getGameStatus())
 				{
 					gamer1.shoot();
@@ -65,19 +51,8 @@ public class GameController implements ActionListener, Observable{
 				}
 
 				System.out.println( game.getGameStatus() );
-				
-				System.out.println("Gamer 1");
-				for (Ship tmp : gamer1.getShips())
-				{
-					System.out.println( tmp.toString() );
-				}
-				
-				System.out.println("Gamer 2");
-				for (Ship tmp : gamer2.getShips())
-				{
-					System.out.println( tmp.toString() );
-				}
-				
+				gw.txtAreaG1.append("\tPartie Fini ! " + game.getGameStatus());
+				gw.txtAreaG2.append("\tPartie Fini ! " + game.getGameStatus());
 				break;
 				
 			case "1 player Mode":
@@ -110,21 +85,5 @@ public class GameController implements ActionListener, Observable{
 		
 	}
 	
-	@Override
-	public void addObserver(Grid grid) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeObserver() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void notifyObserver(Grid grid) {
-		// TODO Auto-generated method stub
-	}
 }
- 
+

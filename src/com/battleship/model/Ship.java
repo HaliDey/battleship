@@ -43,7 +43,7 @@ public class Ship {
 		{
 			this.damage++;
 		}
-		System.out.println("[Ship Model | incDamage]" + this.toString());
+		//System.out.println("[Ship Model | incDamage]" + this.toString());
 	}
 	
 	
@@ -59,10 +59,14 @@ public class Ship {
 		return this.damage == this.numbercell ? true : false;
 	}
 	
-	
 	public String getName()
 	{
 		return this.shipname;
+	}
+	
+	public String shipStatus()
+	{
+		return (this.estCoule() == true) ? "Coulé" : "Flotte";
 	}
 	
 	/**

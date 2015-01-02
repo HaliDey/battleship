@@ -3,6 +3,7 @@ package com.battleship.controller;
 
 import com.battleship.model.GameModel;
 import com.battleship.model.Ship;
+import com.battleship.view.GridWindow;
 
 
 public class ShipController{
@@ -17,34 +18,43 @@ public class ShipController{
 	}
 
 	public static boolean isTouched(int x, int y){
-		String tour;
+		String currentPlayer;
 		
 		Ship[] ships = null;
 		
 		if (1 == GameModel.getCurrentGamer()  ){
 			//Premier joueur (Grille de Gauche)
 			ships = ShipController.gamer1Ships;
-			tour = "Joueur 2";
+			currentPlayer = "Joueur 1";
 			GameModel.setCurrentGamer(2);
 		} else {
 			//Deuxième joueur (Grille de Droite)
 			ships = ShipController.gamer2Ships;
-			tour = "Joueur 1";
+			currentPlayer = "Joueur 2";
 			GameModel.setCurrentGamer(1);
 		}
 		
 		for (Ship tmp : ships)
 		{
 			if ("H" == tmp.getOrientation()){
-				for (int i=tmp.getCoordinates().getY(); i<tmp.getCoordinates().getY()+tmp.getNumbercell(); i++)
+				for (int i=tmp.getCoordinates().getY(); i<=tmp.getCoordinates().getY()+tmp.getNumbercell(); i++)
 				{
 					if ((x == tmp.getCoordinates().getX()) && (y == i))
 					{
 						tmp.incDamage();
-						System.out.println("[ShipController | isTouched] H, true, " + tour);
+						
+						if (currentPlayer.equals("Joueur 1"))
+						{
+							GridWindow.txtAreaG1.append("[Toucher] Coordonnées : X: " + tmp.getCoordinates().getX() + " Y: " + i + " Horizontale | Navire : " 
+														+ tmp.getName()
+														+ " - Etat : " + tmp.shipStatus() + "\n");
+						} else {
+							GridWindow.txtAreaG2.append("[Toucher] Coordonnées : X: " + tmp.getCoordinates().getX() + " Y: " + i + " Horizontale | Navire : " 
+									+ tmp.getName()
+									+ " - Etat : " + tmp.shipStatus() + "\n");
+						}
 						
 						ShipController.game.checkShips(ships);
-						
 						return true;
 					}
 				}
@@ -54,16 +64,24 @@ public class ShipController{
 					if ((x == i) && (y == tmp.getCoordinates().getY()))
 					{
 						tmp.incDamage();
-						System.out.println("[ShipController | isTouched] V, true, " + tour);
+						
+						if (currentPlayer.equals("Joueur 1"))
+						{
+							GridWindow.txtAreaG1.append("[Toucher] Coordonnées : X: " + tmp.getCoordinates().getX() + " Y: " + i + " Verticale | Navire : " 
+														+ tmp.getName()
+														+ " - Etat : " + tmp.shipStatus() + "\n");
+						} else {
+							GridWindow.txtAreaG2.append("[Toucher] Coordonnées : X: " + tmp.getCoordinates().getX() + " Y: " + i + " Verticale | Navire : " 
+									+ tmp.getName()
+									+ " - Etat : " + tmp.shipStatus() + "\n");
+						}
 
 						ShipController.game.checkShips(ships);
-						
 						return true;
 					}
 				}
 			}
 		}
-		System.out.println("[ShipController | isTouched] false, " + tour);
 		return false;
 	}
 		

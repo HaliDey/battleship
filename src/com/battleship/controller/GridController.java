@@ -51,7 +51,7 @@ public class GridController implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
+		
 		if (this.cell.getGridSide() == GameModel.getCurrentGamer())
 		{
 			if (null != this.cell.getDefaultBackground())
@@ -79,6 +79,7 @@ public class GridController implements MouseListener{
 		} else {
 			System.out.println("C'est pas ton tour [GridListener]");
 		}
+		
 	}
 
 	public Cell getCell() {

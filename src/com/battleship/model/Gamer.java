@@ -1,11 +1,8 @@
 package com.battleship.model;
 
-import java.awt.Event;
-import java.util.Random;
 
 import com.battleship.view.Grid;
 import com.battleship.model.Ship;
-import com.battleship.view.Cell;
 
 /**
  * @author 
@@ -47,8 +44,5 @@ public class Gamer {
 	public void setShips(Ship ships[]) {
 		this.ships = ships;
 	}
-
-
-
 
 }

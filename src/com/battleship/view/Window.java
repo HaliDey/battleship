@@ -74,15 +74,15 @@ public class Window extends JFrame{
 		JLabel battleTypeLabel = new JLabel("Type de bataille");
 		battleTypeLabel.setFont(new Font("Segoe UI",Font.PLAIN,18));
 		battleTypeGroup = new ButtonGroup();
-		battleshipType = new JRadioButton("Battle Ship", true);
+		battleshipType = new JRadioButton("Bataille Navale", true);
 		battleshipType.setActionCommand("Battle Ship");
-		radarType = new JRadioButton("Mission radar player");
+		radarType = new JRadioButton("Mission Radar");
 		radarType.setActionCommand("Mission radar player");
 		radarType.setEnabled(false);
-		artilleryOperationType = new JRadioButton("Artillery operation player");
+		artilleryOperationType = new JRadioButton("Opération Artillerie");
 		artilleryOperationType.setActionCommand("Artillery operation player");
 		artilleryOperationType.setEnabled(false);
-		redAlertType = new JRadioButton("Red Alert");
+		redAlertType = new JRadioButton("Alerte rouge");
 		redAlertType.setActionCommand("Red Alert");
 		redAlertType.setEnabled(false);
 		//Grouper les Radio btns pour limiter la selection

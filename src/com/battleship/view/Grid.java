@@ -9,7 +9,6 @@ import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 
 import com.battleship.model.Coordinates;
-import com.battleship.model.GameModel;
 
 public class Grid extends JPanel{	
 	private static final long serialVersionUID = 5451380659929409310L;

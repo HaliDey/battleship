@@ -22,12 +22,12 @@ public class IA extends Gamer {
 
 	public void shoot(){
 		Random rand = new Random();
-		int x = rand.nextInt(10);
-		int y = rand.nextInt(10);
+		int x = rand.nextInt(10 - 0) + 0;
+		int y = rand.nextInt(10 - 0) + 0;
 		
 		Cell cell = this.grid.tab[x][y];
 		
-		System.out.println("[IA Model | shoot] cellSide : " + cell.getGridSide() + " -- cuurentGamer : " + GameModel.getCurrentGamer());
+		//System.out.println("[IA Model | shoot] cellSide : " + cell.getGridSide() + " -- cuurentGamer : " + GameModel.getCurrentGamer());
 		
 		if (cell.getGridSide() == GameModel.getCurrentGamer())
 		{
@@ -35,7 +35,7 @@ public class IA extends Gamer {
 			{
 				if (cell.getDefaultBackground().equals(Color.DARK_GRAY))
 				{
-					System.out.println("Case déja frapper");
+					//System.out.println("\t[IA Model | shoot] Case déja frapper");
 				} else {
 					if ( ShipController.isTouched(cell.getCellX(), cell.getCellY()) )
 					{
@@ -51,11 +51,13 @@ public class IA extends Gamer {
 				}
 				cell.setBackground(Color.DARK_GRAY);
 				cell.setDefaultBackground(Color.DARK_GRAY);
-				System.out.println("[IA Model | shoot] Rater ");
+				//System.out.println("[IA Model | shoot] Rater ");
 			}
 		} else {
-			System.out.println("[IA Model | shoot] C'est pas ton tour");
+			//System.out.println("[IA Model | shoot] C'est pas ton tour");
 		}
+		
+		
 		
 	}
 

@@ -2,7 +2,6 @@ package com.battleship.model;
 
 import java.util.ArrayList;
 
-import com.battleship.observer.Observable;
 import com.battleship.view.Grid;
 
 public class GameModel{
