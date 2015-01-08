@@ -32,7 +32,7 @@ public class GameController implements ActionListener{
 		
 		if (0 == selectedShips)
 		{
-			JOptionPane.showMessageDialog(this.mView, "Vous devez au moin séléctionner un navire");
+			JOptionPane.showMessageDialog(this.mView, "Vous devez au moins selectionner un navire");
 			return;
 		}
 		

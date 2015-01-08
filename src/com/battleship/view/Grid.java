@@ -10,7 +10,7 @@ import javax.swing.border.MatteBorder;
 
 import com.battleship.model.Coordinates;
 
-//Declaration de la classe Grid qui herite de la classe JPanel (conteneur léger générique)
+//Declaration de la classe Grid qui herite de la classe JPanel (conteneur leger generique)
 
 public class Grid extends JPanel{	
 	private static final long serialVersionUID = 5451380659929409310L;
@@ -22,7 +22,7 @@ public class Grid extends JPanel{
 	
 	public Grid (ArrayList <Coordinates> shipsCoordinates, int side){
 
-		this.setLayout(new GridLayout(10, 10)); // Définit le gestionnaire de présentation de ce conteneur. Cette méthode modifie les informations relatives schéma,
+		this.setLayout(new GridLayout(10, 10)); // Definit le gestionnaire de presentation de ce conteneur. Cette methode modifie les informations relatives au schema
 		this.tab = new Cell[10][10]; //dimmension du tableau
 		this.side = side; //declaration des cotes
         this.initGrid(); // appel de la methode pour dessiner la grille
@@ -47,15 +47,15 @@ public class Grid extends JPanel{
                 cellPane.setCellY(col);//affiche le colonne
                 Border border = null;
                 
-//Parcours si la colonne est inferieur de la grille est inférieur à 9 cases 
+//Parcours de la grille si la ligne est inferieur à 9 cases 
                 
                 if (row < 9) {
 
-//Parcours si la colonne est inferieur de la grille est inférieur à 9 cases 
+//Parcours de la grille si la colonne est inferieur à 9 cases 
                 	
                     if (col < 9) {
                     	
-//Creation de la bordure mate avec les encarts et la couleur secifique ici gris.
+//Creation de la bordure mate avec les encarts et la couleur specifique ici la couleur grise et declaree.
                     
                         border = new MatteBorder(1, 1, 0, 0, Color.GRAY); //MatteBorder(int top, int left, int bottom,int right,Color matteColor)
                       
@@ -64,7 +64,7 @@ public class Grid extends JPanel{
                     }
                 } else {
 
-//Parcours si la colonne est inferieur de la grille est inférieur à 9 cases 
+//Parcours de la grille si la colonne à 9 cases 
                     if (col < 9) {
                     	
                         border = new MatteBorder(1, 1, 1, 0, Color.GRAY); //MatteBorder(int top, int left, int bottom,int right,Color matteColor)

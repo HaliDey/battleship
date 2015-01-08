@@ -19,7 +19,7 @@ public class Gamer {
 	
 //Declaration des attributs
 	
-	private Vector<Ship> ships;//Declaration d'un Vector <Ship> dont l'objet extensible est ici nommés ships qui selectionne tous les bateaux
+	private Vector<Ship> ships;//Declaration d'un Vector <Ship> dont l'objet extensible est ici nommes ships qui selectionne tous les bateaux
 	private String name;
 	private int goal;
 	private int nb_stockes; //nombre de stockes (Nombre de coups (Attaques)

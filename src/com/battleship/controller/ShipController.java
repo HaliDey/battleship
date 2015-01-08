@@ -53,7 +53,7 @@ public class ShipController{
 		{
 			if ("H" == tmp.getOrientation()){  // parcourir horizontalement pour voir le bateau toucher
 				
-// on parcours le bateau en commençant de la prenmiere coordonnée Y jusqu'à la fin du bateau (en fonction de la taille du bateau)
+// on parcours le bateau en commençant de la premiere coordonnée Y jusqu'à la fin du bateau (en fonction de la taille du bateau)
 				
 				for (int i=tmp.getCoordinates().getY(); i<=tmp.getCoordinates().getY()+tmp.getNumbercell(); i++) 
 				{
@@ -63,7 +63,7 @@ public class ShipController{
 						
 						if (currentPlayer.equals("Joueur 1")) 
 						{
-							// on 	affiche du coté joueur 1 
+							// on affiche du coté joueur 1 
 							GridWindow.txtAreaG1.append("[Toucher] Coordonnées : X: " + tmp.getCoordinates().getX() + " Y: " + i + " Horizontale | Navire : " 
 														+ tmp.getName()
 														+ " - Etat : " + tmp.shipStatus() + "\n"); 
@@ -83,7 +83,7 @@ public class ShipController{
 			
 				if ("V" == tmp.getOrientation()){
 					
-// on parcours le bateau en commençant de la prenmiere coordonnée Y jusqu'à la fin du bateau (en fonction de la taille du bateau)
+// on parcours le bateau en commençant de la prenmiere coordonnee Y jusqu'à la fin du bateau (en fonction de la taille du bateau)
 				
 				for (int i=tmp.getCoordinates().getX(); i<tmp.getCoordinates().getX()+tmp.getNumbercell(); i++){
 					
